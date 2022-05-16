@@ -1,0 +1,3 @@
+C:\Users\dekel\source\repos\BusLineProject\BusLineProject\obj\Release\ConsoleApp.csproj.AssemblyReference.cache
+C:\Users\dekel\source\repos\BusLineProject\BusLineProject\obj\Release\ConsoleApp.csproj.SuggestedBindingRedirects.cache
+C:\Users\dekel\source\repos\BusLineProject\BusLineProject\obj\Release\ConsoleApp.csproj.CoreCompileInputs.cache

@@ -1,0 +1,15 @@
+C:\Users\dekel\source\repos\BusLineProject\BusLineProject\obj\Debug\ConsoleApp.csproj.AssemblyReference.cache
+C:\Users\dekel\source\repos\BusLineProject\BusLineProject\obj\Debug\ConsoleApp.csproj.SuggestedBindingRedirects.cache
+C:\Users\dekel\source\repos\BusLineProject\BusLineProject\obj\Debug\ConsoleApp.csproj.CoreCompileInputs.cache
+C:\Users\dekel\source\repos\BusLineProject\BusLineProject\bin\Debug\BusLineProject.exe.config
+C:\Users\dekel\source\repos\BusLineProject\BusLineProject\bin\Debug\BusLineProject.exe
+C:\Users\dekel\source\repos\BusLineProject\BusLineProject\bin\Debug\BusLineProject.pdb
+C:\Users\dekel\source\repos\BusLineProject\BusLineProject\bin\Debug\Server.dll
+C:\Users\dekel\source\repos\BusLineProject\BusLineProject\bin\Debug\Model.dll
+C:\Users\dekel\source\repos\BusLineProject\BusLineProject\bin\Debug\Server.pdb
+C:\Users\dekel\source\repos\BusLineProject\BusLineProject\bin\Debug\Server.dll.config
+C:\Users\dekel\source\repos\BusLineProject\BusLineProject\bin\Debug\Model.pdb
+C:\Users\dekel\source\repos\BusLineProject\BusLineProject\bin\Debug\Model.dll.config
+C:\Users\dekel\source\repos\BusLineProject\BusLineProject\obj\Debug\ConsoleApp.csproj.CopyComplete
+C:\Users\dekel\source\repos\BusLineProject\BusLineProject\obj\Debug\BusLineProject.exe
+C:\Users\dekel\source\repos\BusLineProject\BusLineProject\obj\Debug\BusLineProject.pdb
