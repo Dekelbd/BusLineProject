@@ -9,3 +9,14 @@ C:\Users\dekel\source\repos\BusLineProject\Server\bin\Debug\Model.dll.config
 C:\Users\dekel\source\repos\BusLineProject\Server\obj\Debug\Server.csproj.CopyComplete
 C:\Users\dekel\source\repos\BusLineProject\Server\obj\Debug\Server.dll
 C:\Users\dekel\source\repos\BusLineProject\Server\obj\Debug\Server.pdb
+C:\Users\DEKELBE\Source\Repos\BusLineProject\Server\bin\Debug\Server.dll.config
+C:\Users\DEKELBE\Source\Repos\BusLineProject\Server\bin\Debug\Server.dll
+C:\Users\DEKELBE\Source\Repos\BusLineProject\Server\bin\Debug\Server.pdb
+C:\Users\DEKELBE\Source\Repos\BusLineProject\Server\bin\Debug\Model.dll
+C:\Users\DEKELBE\Source\Repos\BusLineProject\Server\bin\Debug\Model.pdb
+C:\Users\DEKELBE\Source\Repos\BusLineProject\Server\bin\Debug\Model.dll.config
+C:\Users\DEKELBE\Source\Repos\BusLineProject\Server\obj\Debug\Server.csproj.AssemblyReference.cache
+C:\Users\DEKELBE\Source\Repos\BusLineProject\Server\obj\Debug\Server.csproj.CoreCompileInputs.cache
+C:\Users\DEKELBE\Source\Repos\BusLineProject\Server\obj\Debug\Server.csproj.CopyComplete
+C:\Users\DEKELBE\Source\Repos\BusLineProject\Server\obj\Debug\Server.dll
+C:\Users\DEKELBE\Source\Repos\BusLineProject\Server\obj\Debug\Server.pdb

@@ -46,8 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\TransportConfiguration.cs" />
     <Compile Include="Enums\BusType.cs" />
     <Compile Include="Interfaces\Bus.cs" />
+    <Compile Include="Interfaces\BusModel.cs" />
     <Compile Include="Interfaces\Driver.cs" />
     <Compile Include="Interfaces\Line.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -56,5 +58,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

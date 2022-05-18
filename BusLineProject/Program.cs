@@ -12,6 +12,7 @@ namespace ConsoleApp
         static void Main(string[] args)
         {
             IBusService busService = new BusService();
+            
             Console.WriteLine("Hello and welcome to the bus management system!\n");
 
             int menuchoice = 0;
@@ -94,6 +95,7 @@ namespace ConsoleApp
                         busService.GetBusInfo(busNumberInfo);
                         break;
                     case 8:
+                        busService.AddAllToXml();
                         break;
                     default:
                         Console.WriteLine("Sorry, invalid selection\n");

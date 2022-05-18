@@ -13,6 +13,10 @@ namespace Model.Interfaces
             _address = address;
             _phoneNumber = phoneNumber;
         }
+        private Driver()
+        {
+
+        }
 
         public string FirstName
         {

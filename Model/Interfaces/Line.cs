@@ -12,6 +12,10 @@ namespace Model.Interfaces
             _lineName = lineName;
             _station = stations;
         }
+        private Line()
+        {
+
+        }
 
 
         public string LineName

@@ -17,6 +17,10 @@ namespace Model.Interfaces
             _type = type;
 
         }
+        private Bus()
+        {
+
+        }
 
         public List<Line> Lines
         {

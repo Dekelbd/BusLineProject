@@ -5,3 +5,10 @@ C:\Users\dekel\source\repos\BusLineProject\Model\obj\Debug\Model.csproj.Assembly
 C:\Users\dekel\source\repos\BusLineProject\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
 C:\Users\dekel\source\repos\BusLineProject\Model\obj\Debug\Model.dll
 C:\Users\dekel\source\repos\BusLineProject\Model\obj\Debug\Model.pdb
+C:\Users\DEKELBE\Source\Repos\BusLineProject\Model\bin\Debug\Model.dll.config
+C:\Users\DEKELBE\Source\Repos\BusLineProject\Model\bin\Debug\Model.dll
+C:\Users\DEKELBE\Source\Repos\BusLineProject\Model\bin\Debug\Model.pdb
+C:\Users\DEKELBE\Source\Repos\BusLineProject\Model\obj\Debug\Model.csproj.AssemblyReference.cache
+C:\Users\DEKELBE\Source\Repos\BusLineProject\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
+C:\Users\DEKELBE\Source\Repos\BusLineProject\Model\obj\Debug\Model.dll
+C:\Users\DEKELBE\Source\Repos\BusLineProject\Model\obj\Debug\Model.pdb

@@ -14,6 +14,10 @@ namespace Model.Interfaces
             _longitude = longitude;
 
         }
+        private Station()
+        {
+
+        }
 
         public string Name
         {
