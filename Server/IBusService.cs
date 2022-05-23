@@ -21,11 +21,9 @@ namespace Server
         void PrintStations();
         void PrintDrivers();
         void PrintLines();
-        void AddBusToXml(Bus buses);
-        void AddStationToXml(Station stations);
-        void AddLineToXml(Line lines);
-        void AddDriverToXml(Driver drivers);
 
         void AddAllToXml();
+
+        void LoadAllFromXml();
     }
 }

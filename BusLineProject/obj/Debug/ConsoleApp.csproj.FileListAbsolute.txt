@@ -28,3 +28,17 @@ C:\Users\DEKELBE\Source\Repos\BusLineProject\BusLineProject\obj\Debug\ConsoleApp
 C:\Users\DEKELBE\Source\Repos\BusLineProject\BusLineProject\obj\Debug\ConsoleApp.csproj.CopyComplete
 C:\Users\DEKELBE\Source\Repos\BusLineProject\BusLineProject\obj\Debug\BusLineProject.exe
 C:\Users\DEKELBE\Source\Repos\BusLineProject\BusLineProject\obj\Debug\BusLineProject.pdb
+C:\Zvika\Work\DekelBenDavid\C#\BusLineProject\BusLineProject\bin\Debug\BusLineProject.exe.config
+C:\Zvika\Work\DekelBenDavid\C#\BusLineProject\BusLineProject\bin\Debug\BusLineProject.exe
+C:\Zvika\Work\DekelBenDavid\C#\BusLineProject\BusLineProject\bin\Debug\BusLineProject.pdb
+C:\Zvika\Work\DekelBenDavid\C#\BusLineProject\BusLineProject\bin\Debug\Server.dll
+C:\Zvika\Work\DekelBenDavid\C#\BusLineProject\BusLineProject\bin\Debug\Model.dll
+C:\Zvika\Work\DekelBenDavid\C#\BusLineProject\BusLineProject\bin\Debug\Server.pdb
+C:\Zvika\Work\DekelBenDavid\C#\BusLineProject\BusLineProject\bin\Debug\Server.dll.config
+C:\Zvika\Work\DekelBenDavid\C#\BusLineProject\BusLineProject\bin\Debug\Model.pdb
+C:\Zvika\Work\DekelBenDavid\C#\BusLineProject\BusLineProject\bin\Debug\Model.dll.config
+C:\Zvika\Work\DekelBenDavid\C#\BusLineProject\BusLineProject\obj\Debug\ConsoleApp.csproj.AssemblyReference.cache
+C:\Zvika\Work\DekelBenDavid\C#\BusLineProject\BusLineProject\obj\Debug\ConsoleApp.csproj.CoreCompileInputs.cache
+C:\Zvika\Work\DekelBenDavid\C#\BusLineProject\BusLineProject\obj\Debug\BusLineProject.exe
+C:\Zvika\Work\DekelBenDavid\C#\BusLineProject\BusLineProject\obj\Debug\BusLineProject.pdb
+C:\Zvika\Work\DekelBenDavid\C#\BusLineProject\BusLineProject\obj\Debug\ConsoleApp.csproj.CopyComplete

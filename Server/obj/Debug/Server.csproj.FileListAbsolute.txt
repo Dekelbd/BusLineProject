@@ -20,3 +20,13 @@ C:\Users\DEKELBE\Source\Repos\BusLineProject\Server\obj\Debug\Server.csproj.Core
 C:\Users\DEKELBE\Source\Repos\BusLineProject\Server\obj\Debug\Server.csproj.CopyComplete
 C:\Users\DEKELBE\Source\Repos\BusLineProject\Server\obj\Debug\Server.dll
 C:\Users\DEKELBE\Source\Repos\BusLineProject\Server\obj\Debug\Server.pdb
+C:\Zvika\Work\DekelBenDavid\C#\BusLineProject\Server\bin\Debug\Server.dll.config
+C:\Zvika\Work\DekelBenDavid\C#\BusLineProject\Server\bin\Debug\Server.dll
+C:\Zvika\Work\DekelBenDavid\C#\BusLineProject\Server\bin\Debug\Server.pdb
+C:\Zvika\Work\DekelBenDavid\C#\BusLineProject\Server\bin\Debug\Model.dll
+C:\Zvika\Work\DekelBenDavid\C#\BusLineProject\Server\bin\Debug\Model.pdb
+C:\Zvika\Work\DekelBenDavid\C#\BusLineProject\Server\bin\Debug\Model.dll.config
+C:\Zvika\Work\DekelBenDavid\C#\BusLineProject\Server\obj\Debug\Server.csproj.AssemblyReference.cache
+C:\Zvika\Work\DekelBenDavid\C#\BusLineProject\Server\obj\Debug\Server.csproj.CoreCompileInputs.cache
+C:\Zvika\Work\DekelBenDavid\C#\BusLineProject\Server\obj\Debug\Server.dll
+C:\Zvika\Work\DekelBenDavid\C#\BusLineProject\Server\obj\Debug\Server.pdb

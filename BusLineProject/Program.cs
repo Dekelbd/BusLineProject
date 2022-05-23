@@ -12,11 +12,12 @@ namespace ConsoleApp
         static void Main(string[] args)
         {
             IBusService busService = new BusService();
+            busService.LoadAllFromXml();
             
             Console.WriteLine("Hello and welcome to the bus management system!\n");
 
             int menuchoice = 0;
-            while (menuchoice != 8)
+            while (menuchoice != 9)
             {
                 Console.WriteLine("Please select the option you want to do:\n");
                 Console.WriteLine("1. Adding a new bus");
@@ -26,7 +27,8 @@ namespace ConsoleApp
                 Console.WriteLine("5. Get line info");
                 Console.WriteLine("6. Get station info");
                 Console.WriteLine("7. Get bus info");
-                Console.WriteLine("8. Exit");
+                Console.WriteLine("8. Write to file");
+                Console.WriteLine("9. Exit");
 
                 menuchoice = int.Parse(Console.ReadLine());
 

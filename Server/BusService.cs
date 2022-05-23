@@ -60,15 +60,15 @@ namespace Server
             return new BusModel();
         }
 
-        // serialiser.Serialize(Filestream,busesList);
-
         //Filestream.Close();
 
         public bool AddBus(int id, String linesNumbers, int driverNum, int occupancy, int type)
         {
-            const string xmlfile = @"C:\Users\DEKELBE\source\repos\BusLineProject\TransportConfiguration.xml";
-            XDocument xdoc = XDocument.Load(xmlfile);
-
+            if ((driverNum < 0) || (driverNum > _model.DriverList.Count))
+            {
+                Console.WriteLine("Driver not found");
+                return false;
+            }
             for (int i = 0; i < _model.BusesList.Count; i++)
             {
                 if (_model.BusesList[i].Id == id)
@@ -91,35 +91,18 @@ namespace Server
                 return false;
             }
             _model.BusesList.Add(bus);
-            var serializer = new XmlSerializer(typeof(Bus));
-            using (var writer = new StreamWriter(@"C:\Users\DEKELBE\source\repos\BusLineProject\TransportConfiguration.xml"))
-            {
-                serializer.Serialize(writer, bus);
-                xdoc.Save(xmlfile);
-            }
-            //AddBusToXml(bus);
             Console.WriteLine("Bus add successfully!\n");
             return true;
         }
 
         public bool AddDriver(string firstName, string lastName, string address, string phoneNumber)
         {
-            //const string xmlfile = @"C:\Users\DEKELBE\source\repos\BusLineProject\TransportConfiguration.xml";
-            //XDocument xdoc = XDocument.Load(xmlfile);
-
             Driver driver = new Driver(firstName, lastName, address, phoneNumber);
             if (driver == null)
             {
                 return false;
             }
             _model.DriverList.Add(driver);
-            //AddDriverToXml(driver);
-            var serializer = new XmlSerializer(typeof(Driver));
-            using (FileStream fs = new FileStream(@"C:\Users\DEKELBE\source\repos\BusLineProject\TransportConfiguration.xml", FileMode.Append, FileAccess.Write))
-            using (var writer = new StreamWriter(fs))
-            {
-                serializer.Serialize(writer, driver);
-            }
             Console.WriteLine("Driver add successfully!\n");
             return true;
 
@@ -140,12 +123,6 @@ namespace Server
                 return false;
             }
             _model.LineList.Add(line);
-            var serializer = new XmlSerializer(typeof(Line));
-            using (var writer = new StreamWriter(@"C:\Users\DEKELBE\source\repos\BusLineProject\TransportConfiguration.xml"))
-            {
-                serializer.Serialize(writer, line);
-            }
-            //AddLineToXml(line);
             Console.WriteLine("Line add successfull!\n");
             return true;
         }
@@ -158,12 +135,6 @@ namespace Server
                 return false;
             }
             _model.StationList.Add(station);
-            //AddStationToXml(station);
-            var serializer = new XmlSerializer(typeof(Station));
-            using (var writer = new StreamWriter(@"C:\Users\DEKELBE\source\repos\BusLineProject\TransportConfiguration.xml", append:true))
-            {
-                serializer.Serialize(writer, station);
-            }
             Console.WriteLine("Station add successfully!\n");
             return true;
         }
@@ -291,94 +262,76 @@ namespace Server
                 i++;
             }
         }
-
-        public void AddBusToXml(Bus buses)
-        {/*
-            const string xmlfile = @"C:\Users\DEKELBE\source\repos\BusLineProject\TransportConfiguration.xml";
-            XDocument xdoc = XDocument.Load(xmlfile);
-
-                XElement xbus = new XElement("Bus",
-                    new XAttribute("ID", buses.Id), new XAttribute("Lines", buses.Lines),
-                    new XAttribute("Driver", buses.Driver), new XAttribute("Occupancy", buses.Occupancy),
-                    new XAttribute("Type", buses._Type));
-                xdoc.Root.Add(xbus);
-                xdoc.Save(xmlfile);
-            
-        */}
-        public void AddStationToXml(Station stations)
-        {/*
-            const string xmlfile = @"C:\Users\DEKELBE\source\repos\BusLineProject\TransportConfiguration.xml";
-            XDocument xdoc = XDocument.Load(xmlfile);
-
-                XElement xstatione = new XElement("Station",
-                    new XAttribute("Name", stations.Name), new XAttribute("Latitude", stations.Latitude),
-                    new XAttribute("Longitude", stations.Longitude));
-                xdoc.Root.Add(xstatione);
-                xdoc.Save(xmlfile); 
-            
-            
-        */}
-        public void AddLineToXml(Line lines)
-        {/*
-            const string xmlfile = @"C:\Users\DEKELBE\source\repos\BusLineProject\TransportConfiguration.xml";
-            XDocument xdoc = XDocument.Load(xmlfile);
-
-                XElement xline = new XElement("Line",
-                    new XAttribute("Name", lines.LineName), new XAttribute("Station", lines.Stations));
-                xdoc.Root.Add(xline);
-                xdoc.Save(xmlfile); 
-
-        */}
-        public void AddDriverToXml(Driver drivers)
-        {/*
-            const string xmlfile = @"C:\Users\DEKELBE\source\repos\BusLineProject\TransportConfiguration.xml";
-            XDocument xdoc = XDocument.Load(xmlfile);
-
-                XElement xdriver = new XElement("Driver",
-                    new XAttribute("FirstName", drivers.FirstName), new XAttribute("LastName", drivers.LastName),
-                    new XAttribute("Address", drivers.Address), new XAttribute("PhoneNumber", drivers.PhoneNumber));
-                xdoc.Root.Add(xdriver);
-                xdoc.Save(xmlfile);
-            
-        */}
-
+       
         public void AddAllToXml()
-        {/*
-            const string xmlfile = @"C:\Users\DEKELBE\source\repos\BusLineProject\TransportConfiguration.xml";
-            XDocument xdoc = XDocument.Load(xmlfile);
+            {
+                var serializerBus = new XmlSerializer(typeof(List<Bus>));
+                ////using (var writerBus = new StreamWriter(@"C:\Users\dekel\source\repos\BusLineProject\Model\Configuration\TransportConfiguration.xml"))
+                using (var writerBus = new StreamWriter("TransportConfiguration.xml"))
+                {
+                    serializerBus.Serialize(writerBus, _model.BusesList);
+                    writerBus.Close();
+                }
 
-            foreach (var bus in _model.BusesList)
+            var serializerDriver = new XmlSerializer(typeof(List<Driver>));
+            //using (var writerDriver = new StreamWriter("C:\Users\dekel\source\repos\BusLineProject\Model\Configuration\Driver.xml"))
+            using (var writerDriver = new StreamWriter("Driver.xml"))
             {
-                XElement xbus = new XElement("Bus",
-                    new XAttribute("ID", bus.Id), new XElement("Lines", new XElement("Line", bus.Lines.Count)),
-                    new XElement("Driver", bus.Driver), new XAttribute("Occupancy", bus.Occupancy),
-                    new XAttribute("Type", bus._Type));
-                xdoc.Root.Add(xbus);
-                xdoc.Save(xmlfile);
+                serializerDriver.Serialize(writerDriver, _model.DriverList);
+                writerDriver.Close();
             }
-            foreach (var driver in _model.DriverList)
+
+            var serializerLine = new XmlSerializer(typeof(List<Line>));
+            //using (var writerLine = new StreamWriter(@"C:\Users\dekel\source\repos\BusLineProject\Model\Configuration\Line.xml"))
+            using (var writerLine = new StreamWriter("Line.xml"))
             {
-                XElement xdriver = new XElement("Driver",
-                    new XAttribute("FirstName", driver.FirstName), new XAttribute("LastName", driver.LastName),
-                    new XAttribute("Address", driver.Address), new XAttribute("PhoneNumber", driver.PhoneNumber));
-                xdoc.Root.Add(xdriver);
-                xdoc.Save(xmlfile);
+                serializerLine.Serialize(writerLine, _model.LineList);
+                writerLine.Close();
             }
-            foreach (var station in _model.StationList)
+
+            var serializerStation = new XmlSerializer(typeof(List<Station>));
+            using (var writerStation = new StreamWriter("Station.xml"))
+            //using (var writerStation = new StreamWriter(@"C:\Users\dekel\source\repos\BusLineProject\Model\Configuration\Station.xml"))
             {
-                XElement xbus = new XElement("Stations", new XElement("Station",
-                    new XAttribute("Name", station.Name), new XAttribute("Latitude", station.Latitude),
-                    new XAttribute("Longitude", station.Longitude)));
-                xdoc.Root.Add(xbus);
-                xdoc.Save(xmlfile);
+                serializerStation.Serialize(writerStation, _model.StationList);
+                writerStation.Close();
             }
-            foreach (var line in _model.LineList)
+        }
+
+        public void LoadAllFromXml()
+        {
+            //var filepath = @"C:\Users\dekel\source\repos\BusLineProject\TransportConfiguration.xml";
+            var filepath = "TransportConfiguration.xml";
+            XmlSerializer serializerBus = new XmlSerializer(typeof(List<Bus>));
+                using (FileStream fs = new FileStream(filepath, FileMode.Open))
+                {
+                _model.BusesList = (List<Bus>)serializerBus.Deserialize(fs);
+                fs.Close();
+                }
+            filepath = "Line.xml";
+            XmlSerializer serializerLine = new XmlSerializer(typeof(List<Line>));
+            using (FileStream fs = new FileStream(filepath, FileMode.Open))
             {
-                XElement xline = new XElement("Lines",
-                    new XAttribute("Name", line.LineName), new XElement("Station", line.Stations));
-                xdoc.Root.Add(xline);
-                xdoc.Save(xmlfile);
-            }*/
+                _model.LineList = (List<Line>)serializerLine.Deserialize(fs);
+                fs.Close();
+            }
+
+            filepath = "Driver.xml";
+            XmlSerializer serializerDriver = new XmlSerializer(typeof(List<Driver>));
+            using (FileStream fs = new FileStream(filepath, FileMode.Open))
+            {
+                _model.DriverList = (List<Driver>)serializerDriver.Deserialize(fs);
+                fs.Close();
+            }
+
+            filepath = "Station.xml";
+            XmlSerializer serializerStation = new XmlSerializer(typeof(List<Station>));
+            using (FileStream fs = new FileStream(filepath, FileMode.Open))
+            {
+                _model.StationList = (List<Station>)serializerStation.Deserialize(fs);
+                fs.Close();
+            }
+
         }
     }
 }
