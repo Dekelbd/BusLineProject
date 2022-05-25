@@ -1,57 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace Model.Interfaces
 {
+    [Serializable]
     public class Line
     {
 
+        #region Constructor
         public Line(string lineName, List<Station> stations)
         {
-            _lineName = lineName;
-            _station = stations;
+            LineName = lineName;
+            Station = stations;
         }
         private Line()
         {
 
         }
+        #endregion
 
-
-        public string LineName
-        {
-            get
-            {
-                return _lineName;
-            }
-            set
-            {
-                if (!String.IsNullOrEmpty(value))
-                {
-                    _lineName = value;
-                }
-            }
-        }
-
-        public List<Station> Stations
-        {
-            get
-            {
-                return _station;
-            }
-            set
-            {
-                _station = value;
-            }
-        }
-
-
+        #region Fields
         private string _lineName;
         private List<Station> _station;
-        public override String ToString()
-        {
-            return "Line " + _lineName;
-        }
+        #endregion
+
+        #region Getters&Setters
+        [XmlAttribute("name")]
+        public string LineName { get => _lineName; set => _lineName = value; }
+        public List<Station> Station { get => _station; set => _station = value; }
+        #endregion
+
+        #region Operattors overload
+        public override String ToString() => "Line " + LineName;
+        #endregion
 
     }
 }

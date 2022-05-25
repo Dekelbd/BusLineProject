@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfDriver xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Driver>
+    <FirstName>Dekel</FirstName>
+    <LastName>Ben</LastName>
+    <Address>David</Address>
+    <PhoneNumber>0525555555</PhoneNumber>
+  </Driver>
+  <Driver>
+    <FirstName>Eyal</FirstName>
+    <LastName>Turtz</LastName>
+    <Address>Yagur</Address>
+    <PhoneNumber>0543333333</PhoneNumber>
+  </Driver>
+</ArrayOfDriver>

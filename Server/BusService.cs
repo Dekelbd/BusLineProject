@@ -9,7 +9,6 @@ using System.Configuration;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using System.IO;
-//using System.Collections.Generic;
 
 
 namespace Server
@@ -21,47 +20,43 @@ namespace Server
         BusModel _model = new BusModel();
         #endregion
 
-        public BusService()
-        {
-            LoadData();
-        }
+        #region Constructor
+        public BusService() => LoadData();
+        #endregion
 
+        #region Private methods
         private void LoadData()
         {
-            /*
-            if (_model == null)
-            {
-                if (ConfigurationManager.AppSettings["SavingDataFormat"] == "InMemory")
-                {
-                    Console.WriteLine("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-                    _model = CreateMockData();
-                }
-                else if(ConfigurationManager.AppSettings["SavingDataFormat"] == "File")
-                {
-                    Console.WriteLine("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-                    //const string xmlfile = @"C:\Users\DEKELBE\source\repos\BusLineProject\TransportConfiguration.xml";
-                    //XDocument xdoc = XDocument.Load(xmlfile);
-                    //var xroot = xdoc.Root;
-                    //var chilnodes = xdoc.Root.Descendants();
-                    //foreach (var chilnode in chilnodes)
-                    //{
-                    //    Console.WriteLine(chilnode);
-                    //}
-
-                }
-
-            }*/
-
+            /* if (ConfigurationManager.AppSettings["SavingDataFormat"] == "InMemory")
+             {
+                 _model = CreateMockData();
+             }
+             else if (ConfigurationManager.AppSettings["SavingDataFormat"] == "File")
+             {
+                 ReadFromXml();
+             }*/
         }
 
         private BusModel CreateMockData()
         {
-            // write here some default info
+            AddStation("Haifa", 1.2, 2.3);
+            AddStation("Tel Aviv", 1.2, 2.3);
+            AddStation("Akko", 1.2, 2.3);
+            AddStation("Nahariya", 1.2, 2.3);
+            AddStation("Rehovot", 1.2, 2.3);
+            AddLine("aaa", "1,2");
+            AddLine("bbb", "1,3,5");
+            AddLine("ccc", "2,4,5");
+            AddDriver("Dekel", "Ben", "David", "0525555555");
+            AddDriver("Eyal", "Turz", "Yagur", "0523333333");
+            AddDriver("Michael", "Shachur", "Eshar", "0527777777");
+            AddBus(123, "1,2", 1, 50, 1);
+            AddBus(456, "2,3", 2, 70, 2);
             return new BusModel();
         }
+        #endregion
 
-        //Filestream.Close();
-
+        #region Public methods
         public bool AddBus(int id, String linesNumbers, int driverNum, int occupancy, int type)
         {
             if ((driverNum < 0) || (driverNum > _model.DriverList.Count))
@@ -69,6 +64,7 @@ namespace Server
                 Console.WriteLine("Driver not found");
                 return false;
             }
+
             for (int i = 0; i < _model.BusesList.Count; i++)
             {
                 if (_model.BusesList[i].Id == id)
@@ -80,10 +76,13 @@ namespace Server
             Driver driver = _model.DriverList[driverNum - 1];
             List<Line> lines = new List<Line>();
             string[] numbers = linesNumbers.Split(',');
-            foreach (String number in numbers)
+            if (numbers.Length > 0)
             {
-                int num = int.Parse(number) - 1;
-                lines.Add(_model.LineList[num]);
+                foreach (String number in numbers)
+                {
+                    int num = int.Parse(number) - 1;
+                    lines.Add(_model.LineList[num]);
+                }
             }
             Bus bus = new Bus(id, lines, driver, occupancy, (type == 1) ? BusType.trips : BusType.communal);
             if (bus == null)
@@ -142,7 +141,25 @@ namespace Server
         public void GetBusInfo(int id)
         {
             bool found = false;
-            for (int i = 0; i < _model.BusesList.Count; i++)
+
+            _model.BusesList.ForEach(bus =>
+            {
+                if (bus.Id.Equals(id))
+                {
+                    bus.Lines.ForEach(line =>
+                    {
+                        Console.WriteLine($"Bus number: { bus.Id}\n" +
+                          $"Bus driver name: {bus.Driver.FirstName} {bus.Driver.LastName}\n" +
+                          $"Bus line: {line.LineName}\n" +
+                          $"Bus occupancy: {bus.Occupancy}\n" +
+                          $"Bus type: {bus.Type}\n\n ");
+                    });
+                    found = true;
+                }
+            });
+
+
+            /*for (int i = 0; i < _model.BusesList.Count; i++)
             {
                 if (_model.BusesList[i].Id == id)
                 {
@@ -152,44 +169,65 @@ namespace Server
                             $"Bus driver name: {_model.BusesList[i].Driver.FirstName} {_model.BusesList[i].Driver.LastName}\n" +
                             $"Bus line: {_model.BusesList[i].Lines[j].LineName}\n" +
                             $"Bus occupancy: {_model.BusesList[i].Occupancy}\n" +
-                            $"Bus type: {_model.BusesList[i]._Type}\n\n ");
+                            $"Bus type: {_model.BusesList[i].Type}\n\n ");
                     }
                     found = true;
                     break;
                 }
-            }
+            }*/
             if (!found)
             {
-                Console.WriteLine("Bus not found!!!");
+                Console.WriteLine("Bus not found!");
             }
         }
 
         public void GetLineInfo(string lineName)
         {
             int flag = 0;
-            for (int i = 0; i < _model.LineList.Count; i++)
+            //for (int i = 0; i < _model.LineList.Count; i++)
+            // {
+            _model.LineList.ForEach(line =>
             {
-                if (_model.LineList[i].LineName == lineName)
+                if (line.LineName.Equals(lineName))
                 {
-                    Console.WriteLine($"Line name: {_model.LineList[i].LineName}");
+                    Console.WriteLine($"Line name: {line.LineName}");
                     flag = 1;
                 }
-            }
-
-            for (int i = 0; i < _model.BusesList.Count; i++)
-            {
-                for (int k = 0; k < _model.BusesList[i].Lines.Count; k++)
+            });/*
+                if (_model.LineList[i].LineName == lineName)
                 {
-                        if (_model.BusesList[i].Lines[k].LineName == lineName)
-                        {
-                            Console.WriteLine($"Bus number: { _model.BusesList[i].Id}\n" +
-                                $"Bus driver name: {_model.BusesList[i].Driver.FirstName} {_model.BusesList[i].Driver.LastName}\n" +
-                                $"Bus line: {_model.BusesList[i].Lines[k].LineName}\n" +
-                                $"Bus occupancy: {_model.BusesList[i].Occupancy}\n" +
-                                $"Bus type: {_model.BusesList[i]._Type}\n\n ");
-                        }                 
+
+                    Console.WriteLine($"Line name: {_model.LineList[i].LineName}");
+                    flag = 1;
+                }*/
+            //}
+
+            _model.BusesList.ForEach(bus => bus.Lines.ForEach(line =>
+            {
+                if (line.LineName.Equals(lineName))
+                {
+                    Console.WriteLine($"Bus number: { bus.Id}\n" +
+                        $"Bus driver name: {bus.Driver.FirstName} {bus.Driver.LastName}\n" +
+                        $"Bus line: {line.LineName}\n" +
+                        $"Bus occupancy: {bus.Occupancy}\n" +
+                        $"Bus type: {bus.Type}\n\n ");
                 }
-            }
+            }));
+            /*
+          for (int i = 0; i < _model.BusesList.Count; i++)
+          {
+              for (int k = 0; k < _model.BusesList[i].Lines.Count; k++)
+              {
+                  if (_model.BusesList[i].Lines[k].LineName == lineName)
+                  {
+                      Console.WriteLine($"Bus number: { _model.BusesList[i].Id}\n" +
+                          $"Bus driver name: {_model.BusesList[i].Driver.FirstName} {_model.BusesList[i].Driver.LastName}\n" +
+                          $"Bus line: {_model.BusesList[i].Lines[k].LineName}\n" +
+                          $"Bus occupancy: {_model.BusesList[i].Occupancy}\n" +
+                          $"Bus type: {_model.BusesList[i].Type}\n\n ");
+                  }
+              }
+          }*/
             if (flag == 0)
             {
                 Console.WriteLine($"The line {lineName} is not exist!\n");
@@ -199,6 +237,18 @@ namespace Server
         public void GetStationInfo(string stationName)
         {
             int flag = 0;
+
+            _model.StationList.ForEach(station =>
+            {
+                if (station.Name.Equals(stationName))
+                {
+                    Console.WriteLine($"station name: {station.Name} - " +
+                   $"station latitude: {station.Latitude}, " +
+                   $"station longitude: {station.Longitude}\n");
+                    flag = 1;
+                }
+            });
+            /*
             for (int i = 0; i < _model.StationList.Count; i++)
             {
                 if (_model.StationList[i].Name == stationName)
@@ -208,25 +258,39 @@ namespace Server
                         $"station longitude: {_model.StationList[i].Longitude}\n");
                     flag = 1;
                 }
-            }
+            }*/
 
+            _model.BusesList.ForEach(bus => bus.Lines.ForEach(line => line.Station.ForEach(station =>
+            {
+                if (station.Name.Equals(stationName))
+                {
+                    Console.WriteLine($"Bus number: { bus.Id}\n" +
+                         $"Bus driver name: {bus.Driver.FirstName} {bus.Driver.LastName}\n" +
+                         $"Bus line: {line.LineName}\n" +
+                         $"Bus occupancy: {bus.Occupancy}\n" +
+                         $"Bus type: {bus.Type}\n\n ");
+                }
+            })));
+
+            /*
             for (int i = 0; i < _model.BusesList.Count; i++)
             {
                 for (int k = 0; k < _model.BusesList[i].Lines.Count; k++)
                 {
-                    for (int j = 0; j < _model.BusesList[i].Lines[k].Stations.Count; j++)
+                    for (int j = 0; j < _model.BusesList[i].Lines[k].Station.Count; j++)
                     {
-                        if (_model.BusesList[i].Lines[k].Stations[j].Name == stationName)
+                        if (_model.BusesList[i].Lines[k].Station[j].Name == stationName)
                         {
                             Console.WriteLine($"Bus number: { _model.BusesList[i].Id}\n" +
                                 $"Bus driver name: {_model.BusesList[i].Driver.FirstName} {_model.BusesList[i].Driver.LastName}\n" +
                                 $"Bus line: {_model.BusesList[i].Lines[k].LineName}\n" +
                                 $"Bus occupancy: {_model.BusesList[i].Occupancy}\n" +
-                                $"Bus type: {_model.BusesList[i]._Type}\n\n ");
+                                $"Bus type: {_model.BusesList[i].Type}\n\n ");
                         }
                     }
                 }
             }
+            */
             if (flag == 0)
             {
                 Console.WriteLine($"The station {stationName} is not exist!\n");
@@ -262,76 +326,74 @@ namespace Server
                 i++;
             }
         }
-       
-        public void AddAllToXml()
-            {
-                var serializerBus = new XmlSerializer(typeof(List<Bus>));
-                ////using (var writerBus = new StreamWriter(@"C:\Users\dekel\source\repos\BusLineProject\Model\Configuration\TransportConfiguration.xml"))
-                using (var writerBus = new StreamWriter("TransportConfiguration.xml"))
-                {
-                    serializerBus.Serialize(writerBus, _model.BusesList);
-                    writerBus.Close();
-                }
 
+        public void WriteToXml()
+        {
+            var filePathBus = Path.Combine(Environment.CurrentDirectory, "Configuration/TransportConfiguration.xml");
+            var serializerBus = new XmlSerializer(typeof(List<Bus>));
+            ////using (var writerBus = new StreamWriter(@"C:\Users\dekel\source\repos\BusLineProject\Model\Configuration\TransportConfiguration.xml"))
+            using (var writerBus = new StreamWriter(filePathBus))
+            {
+                serializerBus.Serialize(writerBus, _model.BusesList);
+            }
+
+            var filePathDriver = Path.Combine(Environment.CurrentDirectory, "Configuration/Driver.xml");
             var serializerDriver = new XmlSerializer(typeof(List<Driver>));
             //using (var writerDriver = new StreamWriter("C:\Users\dekel\source\repos\BusLineProject\Model\Configuration\Driver.xml"))
-            using (var writerDriver = new StreamWriter("Driver.xml"))
+            using (var writerDriver = new StreamWriter(filePathDriver))
             {
                 serializerDriver.Serialize(writerDriver, _model.DriverList);
-                writerDriver.Close();
             }
 
+            var filePathLine = Path.Combine(Environment.CurrentDirectory, "Configuration/Line.xml");
             var serializerLine = new XmlSerializer(typeof(List<Line>));
             //using (var writerLine = new StreamWriter(@"C:\Users\dekel\source\repos\BusLineProject\Model\Configuration\Line.xml"))
-            using (var writerLine = new StreamWriter("Line.xml"))
+            using (var writerLine = new StreamWriter(filePathLine))
             {
                 serializerLine.Serialize(writerLine, _model.LineList);
-                writerLine.Close();
             }
 
+            var filePathStation = Path.Combine(Environment.CurrentDirectory, "Configuration/Station.xml");
             var serializerStation = new XmlSerializer(typeof(List<Station>));
-            using (var writerStation = new StreamWriter("Station.xml"))
+            using (var writerStation = new StreamWriter(filePathStation))
             //using (var writerStation = new StreamWriter(@"C:\Users\dekel\source\repos\BusLineProject\Model\Configuration\Station.xml"))
             {
                 serializerStation.Serialize(writerStation, _model.StationList);
-                writerStation.Close();
             }
         }
 
-        public void LoadAllFromXml()
+        public void ReadFromXml()
         {
             //var filepath = @"C:\Users\dekel\source\repos\BusLineProject\TransportConfiguration.xml";
-            var filepath = "TransportConfiguration.xml";
-            XmlSerializer serializerBus = new XmlSerializer(typeof(List<Bus>));
-                using (FileStream fs = new FileStream(filepath, FileMode.Open))
-                {
-                _model.BusesList = (List<Bus>)serializerBus.Deserialize(fs);
-                fs.Close();
-                }
-            filepath = "Line.xml";
-            XmlSerializer serializerLine = new XmlSerializer(typeof(List<Line>));
-            using (FileStream fs = new FileStream(filepath, FileMode.Open))
+
+            var filePathBus = Path.Combine(Environment.CurrentDirectory, "Configuration/TransportConfiguration.xml");
+            var serializerBus = new XmlSerializer(typeof(List<Bus>));
+            using (var Reader = new StreamReader(filePathBus))
             {
-                _model.LineList = (List<Line>)serializerLine.Deserialize(fs);
-                fs.Close();
+                _model.BusesList = (List<Bus>)serializerBus.Deserialize(Reader);
+            }
+            var filePathLine = Path.Combine(Environment.CurrentDirectory, "Configuration/Line.xml");
+            var serializerLine = new XmlSerializer(typeof(List<Line>));
+            using (var Reader = new StreamReader(filePathLine))
+            {
+                _model.LineList = (List<Line>)serializerLine.Deserialize(Reader);
             }
 
-            filepath = "Driver.xml";
-            XmlSerializer serializerDriver = new XmlSerializer(typeof(List<Driver>));
-            using (FileStream fs = new FileStream(filepath, FileMode.Open))
+            var filePathDriver = Path.Combine(Environment.CurrentDirectory, "Configuration/Driver.xml");
+            var serializerDriver = new XmlSerializer(typeof(List<Driver>));
+            using (var Reader = new StreamReader(filePathDriver))
             {
-                _model.DriverList = (List<Driver>)serializerDriver.Deserialize(fs);
-                fs.Close();
+                _model.DriverList = (List<Driver>)serializerDriver.Deserialize(Reader);
             }
 
-            filepath = "Station.xml";
-            XmlSerializer serializerStation = new XmlSerializer(typeof(List<Station>));
-            using (FileStream fs = new FileStream(filepath, FileMode.Open))
+            var filePathStation = Path.Combine(Environment.CurrentDirectory, "Configuration/Station.xml");
+            var serializerStation = new XmlSerializer(typeof(List<Station>));
+            using (var Reader = new StreamReader(filePathStation))
             {
-                _model.StationList = (List<Station>)serializerStation.Deserialize(fs);
-                fs.Close();
+                _model.StationList = (List<Station>)serializerStation.Deserialize(Reader);
             }
 
         }
+        #endregion
     }
 }

@@ -4,97 +4,40 @@ using System.Text;
 
 namespace Model.Interfaces
 {
+    [Serializable]
     public class Driver
     {
+        #region Constructor
         public Driver(string firstName, string lastName, string address, string phoneNumber)
         {
             _firstName = firstName;
-            _lastName = lastName;
-            _address = address;
-            _phoneNumber = phoneNumber;
+            LastName = lastName;
+            Address = address;
+            PhoneNumber = phoneNumber;
         }
         private Driver()
         {
 
         }
+        #endregion
 
-        public string FirstName
-        {
-            get
-            {
-                return _firstName;
-            }
-            set
-            {
-
-                if (!String.IsNullOrEmpty(value))
-                {
-                    _firstName = value;
-                }
-
-            }
-        }
-
-        public string LastName
-        {
-            get
-            {
-                return _lastName;
-            }
-            set
-            {
-
-                if (!String.IsNullOrEmpty(value))
-                {
-                    _lastName = value;
-                }
-
-            }
-        }
-
-        public string Address
-        {
-            get
-            {
-                return _address;
-            }
-            set
-            {
-
-                if (!String.IsNullOrEmpty(value))
-                {
-                    _address = value;
-                }
-
-            }
-        }
-
-        public string PhoneNumber
-        {
-            get
-            {
-                return _phoneNumber;
-            }
-            set
-            {
-
-                if (!String.IsNullOrEmpty(value))
-                {
-                    _phoneNumber = value;
-                }
-
-            }
-        }
-
-
+        #region Fields
         private string _firstName;
         private string _lastName;
         private string _address;
         private string _phoneNumber;
-        public override String ToString()
-        {
-            return "Driver " + _firstName + " " + _lastName;
-        }
+        #endregion
+
+        #region Getters&Setters
+        public string FirstName { get => _firstName; set => _firstName = value; }
+        public string LastName { get => _lastName; set => _lastName = value; }
+        public string Address { get => _address; set => _address = value; }
+        public string PhoneNumber { get => _phoneNumber; set => _phoneNumber = value; }
+        #endregion
+
+        #region Operattors overload
+        public override String ToString() => $"Driver {_firstName} {LastName}";
+        #endregion
 
     }
 

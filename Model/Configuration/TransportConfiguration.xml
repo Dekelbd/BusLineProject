@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfBus xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Bus BusId="123">
+    <line>
+      <Line name="abc">
+        <Station>
+          <Station name="Haifa">
+            <Latitude>1</Latitude>
+            <Longitude>2</Longitude>
+          </Station>
+          <Station name="Tel Aviv">
+            <Latitude>3</Latitude>
+            <Longitude>4</Longitude>
+          </Station>
+        </Station>
+      </Line>
+    </line>
+    <Driver>
+      <FirstName>Dekel</FirstName>
+      <LastName>Ben</LastName>
+      <Address>David</Address>
+      <PhoneNumber>0525555555</PhoneNumber>
+    </Driver>
+    <Occupancy>50</Occupancy>
+    <Type>trips</Type>
+  </Bus>
+  <Bus BusId="456">
+    <line>
+      <Line name="abc">
+        <Station>
+          <Station name="Haifa">
+            <Latitude>1</Latitude>
+            <Longitude>2</Longitude>
+          </Station>
+          <Station name="Tel Aviv">
+            <Latitude>3</Latitude>
+            <Longitude>4</Longitude>
+          </Station>
+        </Station>
+      </Line>
+      <Line name="def">
+        <Station>
+          <Station name="Tel Aviv">
+            <Latitude>3</Latitude>
+            <Longitude>4</Longitude>
+          </Station>
+          <Station name="Akko">
+            <Latitude>5</Latitude>
+            <Longitude>6</Longitude>
+          </Station>
+        </Station>
+      </Line>
+    </line>
+    <Driver>
+      <FirstName>Eyal</FirstName>
+      <LastName>Turtz</LastName>
+      <Address>Yagur</Address>
+      <PhoneNumber>0543333333</PhoneNumber>
+    </Driver>
+    <Occupancy>60</Occupancy>
+    <Type>communal</Type>
+  </Bus>
+</ArrayOfBus>

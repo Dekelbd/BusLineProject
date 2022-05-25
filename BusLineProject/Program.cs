@@ -12,10 +12,11 @@ namespace ConsoleApp
         static void Main(string[] args)
         {
             IBusService busService = new BusService();
-            busService.LoadAllFromXml();
-            
+            busService.ReadFromXml();
+
             Console.WriteLine("Hello and welcome to the bus management system!\n");
 
+            #region Switch case
             int menuchoice = 0;
             while (menuchoice != 9)
             {
@@ -34,6 +35,7 @@ namespace ConsoleApp
 
                 switch (menuchoice)
                 {
+                    #region Add bus
                     case 1:
                         Console.WriteLine("Bus information:");
                         Console.Write("ID: ");
@@ -50,6 +52,8 @@ namespace ConsoleApp
                         string linesList = Console.ReadLine();
                         busService.AddBus(id, linesList, driver, occupancy, type);
                         break;
+                    #endregion
+                    #region Add driver
                     case 2:
                         Console.WriteLine("Driver information:");
                         Console.Write("Firstname: ");
@@ -62,6 +66,8 @@ namespace ConsoleApp
                         string phoneNumber = Console.ReadLine();
                         busService.AddDriver(firstName, lastName, address, phoneNumber);
                         break;
+                    #endregion
+                    #region Add station
                     case 3:
                         Console.WriteLine("Station information:");
                         Console.Write("Station name: ");
@@ -72,6 +78,8 @@ namespace ConsoleApp
                         double longitude = Convert.ToDouble(Console.ReadLine());
                         busService.AddStation(stationName, latitude, longitude);
                         break;
+                    #endregion
+                    #region Add line
                     case 4:
                         Console.Write("Line name: ");
                         string lineName = Console.ReadLine();
@@ -79,31 +87,48 @@ namespace ConsoleApp
                         Console.Write("Enter stations list: ");
                         string stationsList = Console.ReadLine();
                         busService.AddLine(lineName, stationsList);
-
                         break;
+                    #endregion
+                    #region Get line
                     case 5:
                         Console.Write("Line name: ");
                         string getLineName = Console.ReadLine();
                         busService.GetLineInfo(getLineName);
                         break;
+                    #endregion
+                    #region Get station
                     case 6:
                         Console.Write("Station name: ");
                         string stationNameInfo = Console.ReadLine();
                         busService.GetStationInfo(stationNameInfo);
                         break;
+                    #endregion
+                    #region Get bus
                     case 7:
                         Console.Write("Bus number: ");
                         int busNumberInfo = int.Parse(Console.ReadLine());
                         busService.GetBusInfo(busNumberInfo);
                         break;
+                    #endregion
+                    #region Write to xml
                     case 8:
-                        busService.AddAllToXml();
+                        busService.WriteToXml();
+                        Console.WriteLine("Info save\n");
                         break;
+                    #endregion
+                    #region Exit from switch
+                    case 9:
+                        Console.WriteLine("Goodbye ..\n");
+                        break;
+                    #endregion
+                    #region Invalid selection
                     default:
                         Console.WriteLine("Sorry, invalid selection\n");
-                        break;
-                }        
+                        break; 
+                        #endregion
+                }
             }
+            #endregion
         }
     }
 }
