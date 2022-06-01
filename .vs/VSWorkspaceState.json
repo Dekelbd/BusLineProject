@@ -3,8 +3,9 @@
     "",
     "\\BusLineProject",
     "\\Model",
-    "\\Model\\Configuration"
+    "\\Model\\Configuration",
+    "\\Server"
   ],
-  "SelectedNode": "\\BusLineProject\\Program.cs",
+  "SelectedNode": "\\Server\\BusService.cs",
   "PreviewInSolutionExplorer": false
 }

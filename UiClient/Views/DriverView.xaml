@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="UiClient.Views.DriverView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UiClient.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ListBox FontSize="20">
+            <ListBoxItem Content="Driver 1"></ListBoxItem>
+            <ListBoxItem Content="Driver 2"></ListBoxItem>
+            <ListBoxItem Content="Driver 3"></ListBoxItem>
+        </ListBox>
+
+    </Grid>
+</UserControl>

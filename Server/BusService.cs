@@ -157,24 +157,6 @@ namespace Server
                     found = true;
                 }
             });
-
-
-            /*for (int i = 0; i < _model.BusesList.Count; i++)
-            {
-                if (_model.BusesList[i].Id == id)
-                {
-                    for (int j = 0; j < _model.BusesList[i].Lines.Count; j++)
-                    {
-                        Console.WriteLine($"Bus number: { _model.BusesList[i].Id}\n" +
-                            $"Bus driver name: {_model.BusesList[i].Driver.FirstName} {_model.BusesList[i].Driver.LastName}\n" +
-                            $"Bus line: {_model.BusesList[i].Lines[j].LineName}\n" +
-                            $"Bus occupancy: {_model.BusesList[i].Occupancy}\n" +
-                            $"Bus type: {_model.BusesList[i].Type}\n\n ");
-                    }
-                    found = true;
-                    break;
-                }
-            }*/
             if (!found)
             {
                 Console.WriteLine("Bus not found!");
@@ -184,8 +166,6 @@ namespace Server
         public void GetLineInfo(string lineName)
         {
             int flag = 0;
-            //for (int i = 0; i < _model.LineList.Count; i++)
-            // {
             _model.LineList.ForEach(line =>
             {
                 if (line.LineName.Equals(lineName))
@@ -193,45 +173,61 @@ namespace Server
                     Console.WriteLine($"Line name: {line.LineName}");
                     flag = 1;
                 }
-            });/*
-                if (_model.LineList[i].LineName == lineName)
-                {
+            });
 
-                    Console.WriteLine($"Line name: {_model.LineList[i].LineName}");
-                    flag = 1;
-                }*/
-            //}
-
-            _model.BusesList.ForEach(bus => bus.Lines.ForEach(line =>
+            List<Bus> AcceptBuses = new List<Bus>();
+            AcceptBuses = IsStationInLine(lineName);
+            AcceptBuses.ForEach(bus =>
             {
-                if (line.LineName.Equals(lineName))
-                {
+                    flag = 1;
                     Console.WriteLine($"Bus number: { bus.Id}\n" +
                         $"Bus driver name: {bus.Driver.FirstName} {bus.Driver.LastName}\n" +
-                        $"Bus line: {line.LineName}\n" +
                         $"Bus occupancy: {bus.Occupancy}\n" +
-                        $"Bus type: {bus.Type}\n\n ");
-                }
-            }));
-            /*
-          for (int i = 0; i < _model.BusesList.Count; i++)
-          {
-              for (int k = 0; k < _model.BusesList[i].Lines.Count; k++)
-              {
-                  if (_model.BusesList[i].Lines[k].LineName == lineName)
-                  {
-                      Console.WriteLine($"Bus number: { _model.BusesList[i].Id}\n" +
-                          $"Bus driver name: {_model.BusesList[i].Driver.FirstName} {_model.BusesList[i].Driver.LastName}\n" +
-                          $"Bus line: {_model.BusesList[i].Lines[k].LineName}\n" +
-                          $"Bus occupancy: {_model.BusesList[i].Occupancy}\n" +
-                          $"Bus type: {_model.BusesList[i].Type}\n\n ");
-                  }
-              }
-          }*/
+                        $"Bus type: {bus.Type}\n\n ");     
+            });
+
             if (flag == 0)
             {
                 Console.WriteLine($"The line {lineName} is not exist!\n");
             }
+        }
+
+        public List<Bus> IsStationInLine(string lineName)
+        {
+            string[] splitLine = lineName.Split(',');
+            int flag = 1;
+            List<Bus> busResult = new List<Bus>();
+
+            foreach (Bus bus in _model.BusesList)
+            {
+                foreach (Line line in bus.Lines)
+                {
+                    int maxIndex = 0;
+                    for (int i = 0; i < splitLine.Length; i++)
+                    {
+                        Station tempStation = new Station(splitLine[i]);
+                        if (!(line.Station.Contains(tempStation)))
+                        {
+                            flag = 0;
+                        }
+                        int tempIndex = line.Station.IndexOf(tempStation);
+                        if (tempIndex < maxIndex)
+                        {
+                            flag = 0;
+                        }
+                        maxIndex = tempIndex;
+                    }
+                    if (flag == 1)
+                    {
+                        busResult.Add(bus);
+                    }
+                    flag = 1;
+                }
+
+            }
+            busResult.Distinct().ToList();
+            return busResult;
+
         }
 
         public void GetStationInfo(string stationName)
@@ -248,17 +244,7 @@ namespace Server
                     flag = 1;
                 }
             });
-            /*
-            for (int i = 0; i < _model.StationList.Count; i++)
-            {
-                if (_model.StationList[i].Name == stationName)
-                {
-                    Console.WriteLine($"station name: {_model.StationList[i].Name} - " +
-                        $"station latitude: {_model.StationList[i].Latitude}, " +
-                        $"station longitude: {_model.StationList[i].Longitude}\n");
-                    flag = 1;
-                }
-            }*/
+
 
             _model.BusesList.ForEach(bus => bus.Lines.ForEach(line => line.Station.ForEach(station =>
             {
@@ -272,25 +258,6 @@ namespace Server
                 }
             })));
 
-            /*
-            for (int i = 0; i < _model.BusesList.Count; i++)
-            {
-                for (int k = 0; k < _model.BusesList[i].Lines.Count; k++)
-                {
-                    for (int j = 0; j < _model.BusesList[i].Lines[k].Station.Count; j++)
-                    {
-                        if (_model.BusesList[i].Lines[k].Station[j].Name == stationName)
-                        {
-                            Console.WriteLine($"Bus number: { _model.BusesList[i].Id}\n" +
-                                $"Bus driver name: {_model.BusesList[i].Driver.FirstName} {_model.BusesList[i].Driver.LastName}\n" +
-                                $"Bus line: {_model.BusesList[i].Lines[k].LineName}\n" +
-                                $"Bus occupancy: {_model.BusesList[i].Occupancy}\n" +
-                                $"Bus type: {_model.BusesList[i].Type}\n\n ");
-                        }
-                    }
-                }
-            }
-            */
             if (flag == 0)
             {
                 Console.WriteLine($"The station {stationName} is not exist!\n");

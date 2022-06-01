@@ -20,6 +20,14 @@ namespace Model.Interfaces
         {
 
         }
+
+        public Station(string stationName)
+        {
+            Name = stationName;
+            Latitude = 0;
+            Longitude = 0;
+        }
+
         #endregion
 
         #region Fields
@@ -37,7 +45,21 @@ namespace Model.Interfaces
 
         #region Operattors overload
         public override String ToString() => "Station " + Name;
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            if (!(obj is Station))
+            {
+                return false;
+            }
+            return ((Station)obj).Name == this.Name;
+        }
         #endregion
+
     }
 
 }

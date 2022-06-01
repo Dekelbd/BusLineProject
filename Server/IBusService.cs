@@ -34,5 +34,10 @@ namespace Server
         void WriteToXml();
         void ReadFromXml();
         #endregion
+
+        #region Other methods
+        List<Bus> IsStationInLine(string lineName);
+        #endregion
+
     }
 }
