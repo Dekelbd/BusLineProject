@@ -27,7 +27,7 @@ namespace Server
 
         #region Print methods
         List<Station> PrintStations();
-        List<Driver> PrintDrivers();
+        List<Driver> GetDrivers();
         List<Line> PrintLines();
         #endregion
 
@@ -37,7 +37,7 @@ namespace Server
         #endregion
 
         #region Other methods
-        List<Bus> IsStationInLine(string lineName);
+        //List<Bus> IsStationInLine(string lineName);
         #endregion
 
     }

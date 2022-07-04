@@ -12,7 +12,7 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            IBusService busService = new BusService();
+            //IBusService busService = new BusService();
             Bus busInfo;
             Station stationLocationInfo;
             List<Bus> busLineInfo = new List<Bus>();
@@ -20,7 +20,8 @@ namespace ConsoleApp
             List<Driver> allDriver = new List<Driver>();
             List<Line> allLines = new List<Line>();
             List<Station> allStation = new List<Station>();
-            busService.ReadFromXml();
+            //busService.ReadFromXml();
+            BusService.Instance.ReadFromXml();
 
             Console.WriteLine("Hello and welcome to the bus management system!\n");
 
@@ -53,7 +54,7 @@ namespace ConsoleApp
                         int occupancy = int.Parse(Console.ReadLine());
                         Console.Write("Bus Type (1. trips, 2. communal): ");
                         int type = int.Parse(Console.ReadLine());
-                        allDriver = busService.PrintDrivers();
+                        allDriver = BusService.Instance.GetDrivers();
                         int i = 1;
                         foreach (Driver printDriver in allDriver)
                         {
@@ -62,7 +63,7 @@ namespace ConsoleApp
                         }
                         Console.Write("Driver number: ");
                         int driver = int.Parse(Console.ReadLine());
-                        allLines = busService.PrintLines();
+                        allLines = BusService.Instance.PrintLines();
                         int j = 1;
                         foreach (Line printLine in allLines)
                         {
@@ -71,7 +72,7 @@ namespace ConsoleApp
                         }
                         Console.Write("Enter lines list: ");
                         string linesList = Console.ReadLine();
-                        int option = busService.AddBus(id, linesList, driver, occupancy, type);
+                        int option = BusService.Instance.AddBus(id, linesList, driver, occupancy, type);
                         if (option == 1)
                         {
                             Console.WriteLine("Driver not found");
@@ -95,7 +96,7 @@ namespace ConsoleApp
                         string address = Console.ReadLine();
                         Console.Write("Phone number: ");
                         string phoneNumber = Console.ReadLine();
-                        if (busService.AddDriver(firstName, lastName, address, phoneNumber) == true)
+                        if (BusService.Instance.AddDriver(firstName, lastName, address, phoneNumber) == true)
                         {
                             Console.WriteLine("Driver add successfully!\n");
                         };
@@ -110,7 +111,7 @@ namespace ConsoleApp
                         double latitude = Convert.ToDouble(Console.ReadLine());
                         Console.Write("Longitude: ");
                         double longitude = Convert.ToDouble(Console.ReadLine());
-                        if (busService.AddStation(stationName, latitude, longitude) == true)
+                        if (BusService.Instance.AddStation(stationName, latitude, longitude) == true)
                         {
                             Console.WriteLine("Station add successfully!\n");
                         };
@@ -120,7 +121,7 @@ namespace ConsoleApp
                     case 4:
                         Console.Write("Line name: ");
                         string lineName = Console.ReadLine();
-                        allStation = busService.PrintStations();
+                        allStation = BusService.Instance.PrintStations();
                         int k = 1;
                         foreach (Station printStation in allStation)
                         {
@@ -129,7 +130,7 @@ namespace ConsoleApp
                         }
                         Console.Write("Enter stations list: ");
                         string stationsList = Console.ReadLine();
-                        if (busService.AddLine(lineName, stationsList) == true)
+                        if (BusService.Instance.AddLine(lineName, stationsList) == true)
                         {
                             Console.WriteLine("Line add successfull!\n");
                         };
@@ -140,7 +141,7 @@ namespace ConsoleApp
                     case 5:
                         Console.Write("Enter start station and end station \naccording to the following example : Haifa,Tel Aviv \n");
                         string getLineName = Console.ReadLine();
-                        busLineInfo = busService.GetBusByLine(getLineName);
+                        busLineInfo = BusService.Instance.GetBusByLine(getLineName);
                         if (busLineInfo == null)
                         {
                             Console.WriteLine($"The line {getLineName} is not exist!\n");
@@ -160,7 +161,7 @@ namespace ConsoleApp
                     case 6:
                         Console.Write("Station name: ");
                         string stationNameInfo = Console.ReadLine();
-                        busByStationInfo = busService.GetBusByStation(stationNameInfo);
+                        busByStationInfo = BusService.Instance.GetBusByStation(stationNameInfo);
                         if (busByStationInfo != null)
                         {
                             busByStationInfo.ForEach(bus => bus.Lines.ForEach(line =>
@@ -183,7 +184,7 @@ namespace ConsoleApp
                     case 7:
                         Console.Write("Station name: ");
                         string stationLocation = Console.ReadLine();
-                        stationLocationInfo = busService.GetStationLocation(stationLocation);
+                        stationLocationInfo = BusService.Instance.GetStationLocation(stationLocation);
                         if (stationLocationInfo != null)
                         {
                             Console.WriteLine($"station name: {stationLocationInfo.Name} - " +
@@ -200,7 +201,7 @@ namespace ConsoleApp
                     case 8:
                         Console.Write("Bus number: ");
                         int busNumberInfo = int.Parse(Console.ReadLine());
-                        busInfo = busService.GetBusInfo(busNumberInfo);
+                        busInfo = BusService.Instance.GetBusInfo(busNumberInfo);
                         if (busInfo == null)
                         {
                             Console.WriteLine("Bus not found!");
@@ -220,7 +221,7 @@ namespace ConsoleApp
                     #endregion
                     #region Write to xml
                     case 9:
-                        busService.WriteToXml();
+                        BusService.Instance.WriteToXml();
                         Console.WriteLine("Info save\n");
                         break;
                     #endregion

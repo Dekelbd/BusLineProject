@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:UiClient.Views"
+             xmlns:local="clr-namespace:UiClient.Views" xmlns:interfaces="clr-namespace:Model.Interfaces;assembly=Model"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
@@ -12,11 +12,12 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ListBox FontSize="20">
-            <ListBoxItem Content="Driver 1"></ListBoxItem>
-            <ListBoxItem Content="Driver 2"></ListBoxItem>
-            <ListBoxItem Content="Driver 3"></ListBoxItem>
+        <ListBox FontSize="20" ItemsSource="{Binding Path=Current}">
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="{x:Type interfaces:Driver}">
+                    <TextBlock Text="{Binding FirstName }"></TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
-
     </Grid>
 </UserControl>
