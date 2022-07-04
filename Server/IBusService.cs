@@ -12,22 +12,23 @@ namespace Server
     public interface IBusService
     {
         #region Add methods
-        bool AddBus(int id, String linesNumbers, int driverNum, int occupancy, int type);
+        int AddBus(int id, String linesNumbers, int driverNum, int occupancy, int type);
         bool AddStation(string name, double latitude, double longitude);
         bool AddLine(string lineName, String stationsNumbers);
         bool AddDriver(string firstName, string lastName, string address, string phoneNumber);
         #endregion
 
         #region Get methods
-        void GetLineInfo(string lineName);
-        void GetStationInfo(string stationName);
-        void GetBusInfo(int id);
+        List<Bus> GetBusByLine(string lineName);
+        Station GetStationLocation(string stationName);
+        List<Bus> GetBusByStation(string stationName);
+        Bus GetBusInfo(int id);
         #endregion
 
         #region Print methods
-        void PrintStations();
-        void PrintDrivers();
-        void PrintLines();
+        List<Station> PrintStations();
+        List<Driver> PrintDrivers();
+        List<Line> PrintLines();
         #endregion
 
         #region Xml methods

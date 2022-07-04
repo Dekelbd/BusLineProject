@@ -31,7 +31,7 @@
             <TabItem Header="Station" Width="70">
                 <WrapPanel>
                     <Views:StationView/>
-                    
+
                 </WrapPanel>
             </TabItem>
         </TabControl>

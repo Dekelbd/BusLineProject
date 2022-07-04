@@ -10,6 +10,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{87B11DEF-3DBE-4E44-9302-15C9CD4A0AF2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UiClient", "UiClient\UiClient.csproj", "{8D3F9902-DCE2-4D80-979E-45875F370B5E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0F995495-3D4B-4590-818F-D34295D095ED} = {0F995495-3D4B-4590-818F-D34295D095ED}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,11 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\BusLineProject",
-    "\\Model",
     "\\Model\\Configuration",
-    "\\Server"
+    "\\UiClient",
+    "\\UiClient\\ViewModels"
   ],
-  "SelectedNode": "\\Server\\BusService.cs",
+  "SelectedNode": "\\UiClient\\ViewModels\\StationViewModel.cs",
   "PreviewInSolutionExplorer": false
 }

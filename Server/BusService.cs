@@ -27,14 +27,14 @@ namespace Server
         #region Private methods
         private void LoadData()
         {
-            /* if (ConfigurationManager.AppSettings["SavingDataFormat"] == "InMemory")
+             if (ConfigurationManager.AppSettings["SavingDataFormat"] == "InMemory")
              {
                  _model = CreateMockData();
              }
              else if (ConfigurationManager.AppSettings["SavingDataFormat"] == "File")
              {
                  ReadFromXml();
-             }*/
+             }
         }
 
         private BusModel CreateMockData()
@@ -57,20 +57,18 @@ namespace Server
         #endregion
 
         #region Public methods
-        public bool AddBus(int id, String linesNumbers, int driverNum, int occupancy, int type)
+        public int AddBus(int id, String linesNumbers, int driverNum, int occupancy, int type)
         {
             if ((driverNum < 0) || (driverNum > _model.DriverList.Count))
-            {
-                Console.WriteLine("Driver not found");
-                return false;
+            {              
+                return 1;
             }
 
             for (int i = 0; i < _model.BusesList.Count; i++)
             {
                 if (_model.BusesList[i].Id == id)
-                {
-                    Console.WriteLine($"Bus number id {id} is already exist! c'ant create duplicate buses\n");
-                    return false;
+                {                   
+                    return 2;
                 }
             }
             Driver driver = _model.DriverList[driverNum - 1];
@@ -87,11 +85,10 @@ namespace Server
             Bus bus = new Bus(id, lines, driver, occupancy, (type == 1) ? BusType.trips : BusType.communal);
             if (bus == null)
             {
-                return false;
+                return 3;
             }
-            _model.BusesList.Add(bus);
-            Console.WriteLine("Bus add successfully!\n");
-            return true;
+            _model.BusesList.Add(bus);          
+            return 4;
         }
 
         public bool AddDriver(string firstName, string lastName, string address, string phoneNumber)
@@ -101,10 +98,8 @@ namespace Server
             {
                 return false;
             }
-            _model.DriverList.Add(driver);
-            Console.WriteLine("Driver add successfully!\n");
+            _model.DriverList.Add(driver);           
             return true;
-
         }
 
         public bool AddLine(string lineName, String stationsNumbers)
@@ -121,8 +116,7 @@ namespace Server
             {
                 return false;
             }
-            _model.LineList.Add(line);
-            Console.WriteLine("Line add successfull!\n");
+            _model.LineList.Add(line);           
             return true;
         }
 
@@ -133,20 +127,21 @@ namespace Server
             {
                 return false;
             }
-            _model.StationList.Add(station);
-            Console.WriteLine("Station add successfully!\n");
+            _model.StationList.Add(station);            
             return true;
         }
 
-        public void GetBusInfo(int id)
+        public Bus GetBusInfo(int id)
         {
-            bool found = false;
-
+            //bool found = false;
+            Bus busInfo = null;
             _model.BusesList.ForEach(bus =>
             {
+               
                 if (bus.Id.Equals(id))
                 {
-                    bus.Lines.ForEach(line =>
+
+                    /*bus.Lines.ForEach(line =>
                     {
                         Console.WriteLine($"Bus number: { bus.Id}\n" +
                           $"Bus driver name: {bus.Driver.FirstName} {bus.Driver.LastName}\n" +
@@ -154,42 +149,53 @@ namespace Server
                           $"Bus occupancy: {bus.Occupancy}\n" +
                           $"Bus type: {bus.Type}\n\n ");
                     });
-                    found = true;
+                    found = true;*/
+                    busInfo = bus;
+
                 }
             });
-            if (!found)
+            /*if (!found)
             {
                 Console.WriteLine("Bus not found!");
-            }
+            }*/
+            return busInfo;
         }
 
-        public void GetLineInfo(string lineName)
+        public List<Bus> GetBusByLine(string lineName)
         {
-            int flag = 0;
-            _model.LineList.ForEach(line =>
+            //int flag = 0;
+            /*_model.LineList.ForEach(line =>
             {
                 if (line.LineName.Equals(lineName))
                 {
                     Console.WriteLine($"Line name: {line.LineName}");
                     flag = 1;
                 }
-            });
+            });*/
 
             List<Bus> AcceptBuses = new List<Bus>();
+            AcceptBuses = null;
             AcceptBuses = IsStationInLine(lineName);
-            AcceptBuses.ForEach(bus =>
+            /*if(flag == 0)
+            {
+               AcceptBuses = null;
+               return AcceptBuses;
+            }*/
+            return AcceptBuses;
+            /*AcceptBuses.ForEach(bus =>
             {
                     flag = 1;
                     Console.WriteLine($"Bus number: { bus.Id}\n" +
                         $"Bus driver name: {bus.Driver.FirstName} {bus.Driver.LastName}\n" +
                         $"Bus occupancy: {bus.Occupancy}\n" +
-                        $"Bus type: {bus.Type}\n\n ");     
-            });
+                        $"Bus type: {bus.Type}\n\n ");   
+            });*/
 
-            if (flag == 0)
+           /* if (flag == 0)
             {
                 Console.WriteLine($"The line {lineName} is not exist!\n");
-            }
+            }*/
+            //return AcceptBuses;
         }
 
         public List<Bus> IsStationInLine(string lineName)
@@ -229,69 +235,111 @@ namespace Server
             return busResult;
 
         }
-
-        public void GetStationInfo(string stationName)
+        public List<Bus> GetBusByStation(string stationName)
         {
             int flag = 0;
+            List<Bus> busByStation = new List<Bus>();
+           // busByStation = null;
+
+            _model.BusesList.ForEach(bus => bus.Lines.ForEach(line => line.Station.ForEach(station =>
+            {
+                
+                if (station.Name.Equals(stationName))
+                {
+                    busByStation.Add(bus);
+                    /*Console.WriteLine($"Bus number: { bus.Id}\n" +
+                         $"Bus driver name: {bus.Driver.FirstName} {bus.Driver.LastName}\n" +
+                         $"Bus line: {line.LineName}\n" +
+                         $"Bus occupancy: {bus.Occupancy}\n" +
+                         $"Bus type: {bus.Type}\n\n ");*/
+                    flag = 1;
+                }
+            })));
+            if(flag == 0)
+            {
+                busByStation = null;
+            }
+            return busByStation;
+
+        }
+
+        public Station GetStationLocation(string stationName)
+        {
+            //int flag = 0;
+            Station correctLocation = null;
+           // List<Station> stationInfo = new List<Station>();
 
             _model.StationList.ForEach(station =>
             {
                 if (station.Name.Equals(stationName))
-                {
-                    Console.WriteLine($"station name: {station.Name} - " +
+                {               
+                    correctLocation = station;
+                   /* Console.WriteLine($"station name: {station.Name} - " +
                    $"station latitude: {station.Latitude}, " +
-                   $"station longitude: {station.Longitude}\n");
-                    flag = 1;
+                   $"station longitude: {station.Longitude}\n");*/
+                    //flag = 1;
                 }
             });
+            return correctLocation;
 
 
-            _model.BusesList.ForEach(bus => bus.Lines.ForEach(line => line.Station.ForEach(station =>
+           /* _model.BusesList.ForEach(bus => bus.Lines.ForEach(line => line.Station.ForEach(station =>
             {
                 if (station.Name.Equals(stationName))
                 {
+                    stationInfo.Add(station);
                     Console.WriteLine($"Bus number: { bus.Id}\n" +
                          $"Bus driver name: {bus.Driver.FirstName} {bus.Driver.LastName}\n" +
                          $"Bus line: {line.LineName}\n" +
                          $"Bus occupancy: {bus.Occupancy}\n" +
                          $"Bus type: {bus.Type}\n\n ");
                 }
-            })));
-
+            })));*/
+           /*
             if (flag == 0)
             {
                 Console.WriteLine($"The station {stationName} is not exist!\n");
             }
+            return stationInfo;*/
         }
 
-        public void PrintDrivers()
+        public List<Driver> PrintDrivers()
         {
-            int i = 1;
+            List<Driver> drivers = new List<Driver>();
+            //int i = 1;
             foreach (Driver driver in _model.DriverList)
             {
-                Console.WriteLine(i + ". " + driver);
-                i++;
+                drivers.Add(driver);
+                //Console.WriteLine(i + ". " + driver);
+                //i++;
             }
+            return drivers;
         }
 
-        public void PrintLines()
+        public List<Line> PrintLines()
         {
-            int i = 1;
+            List<Line> lines = new List<Line>();
+            //int i = 1;
             foreach (Line line in _model.LineList)
             {
-                Console.WriteLine(i + ". " + line);
-                i++;
+                lines.Add(line);
+                //Console.WriteLine(i + ". " + line);
+                //i++;
             }
+            return lines;
         }
 
-        public void PrintStations()
+        public List<Station> PrintStations()
         {
-            int i = 1;
+            List<Station> stations = new List<Station>();
+            //int i = 1;
             foreach (Station station in _model.StationList)
             {
-                Console.WriteLine(i + ". " + station);
-                i++;
+                stations.Add(station);
+                //Console.WriteLine(i + ". " + station);
+                //i++;
             }
+            return stations;
         }
 
         public void WriteToXml()
