@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UiClient.ViewModels;
 
 namespace UiClient.Views
 {
@@ -23,6 +24,7 @@ namespace UiClient.Views
         public BusView()
         {
             InitializeComponent();
+            DataContext = new BusViewModel();
         }
     }
 }

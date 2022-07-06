@@ -13,19 +13,26 @@ using System.IO;
 
 namespace Server
 {
-    public class BusService : IBusService
+    public sealed class BusService : IBusService
     {
 
-        private static BusService _instance = null;
-        private BusService() => LoadData();
-        public static BusService Instance
+        private static IBusService _instance = null;
+        private static readonly object padlock = new object();
+        private BusService() {
+            ReadFromXml() ; }
+        public static IBusService Instance
         {
             get
             {
-                if(_instance == null)
+                lock (padlock)
                 {
-                    _instance = new BusService();
+
+                    if (_instance == null)
+                    {
+                        _instance = new BusService();
+                    }
                 }
+
             return _instance;
             }
         }
@@ -37,6 +44,7 @@ namespace Server
 
         #region Constructor
         //public BusService() => LoadData();
+
         #endregion
 
         #region Private methods
@@ -82,11 +90,11 @@ namespace Server
                     for (int i = 0; i < splitLine.Length; i++)
                     {
                         Station tempStation = new Station(splitLine[i]);
-                        if (!(line.Station.Contains(tempStation)))
+                        if (!(line.Stations.Contains(tempStation)))
                         {
                             flag = 0;
                         }
-                        int tempIndex = line.Station.IndexOf(tempStation);
+                        int tempIndex = line.Stations.IndexOf(tempStation);
                         if (tempIndex < maxIndex)
                         {
                             flag = 0;
@@ -201,7 +209,7 @@ namespace Server
             int flag = 0;
             List<Bus> busByStation = new List<Bus>();
 
-            _model.BusesList.ForEach(bus => bus.Lines.ForEach(line => line.Station.ForEach(station =>
+            _model.BusesList.ForEach(bus => bus.Lines.ForEach(line => line.Stations.ForEach(station =>
             {
                 
                 if (station.Name.Equals(stationName))
@@ -230,7 +238,7 @@ namespace Server
             return correctLocation;
         }
         public List<Driver> GetDrivers()
-        {
+        {            
             List<Driver> drivers = new List<Driver>();
             foreach (Driver driver in _model.DriverList)
             {
@@ -238,7 +246,16 @@ namespace Server
             }
             return drivers;
         }
-        public List<Line> PrintLines()
+        public List<Bus> GetBuses()
+        {
+            List<Bus> buses = new List<Bus>();
+            foreach (Bus bus in _model.BusesList)
+            {
+                buses.Add(bus);
+            }
+            return buses;
+        }
+        public List<Line> GetLines()
         {
             List<Line> lines = new List<Line>();
             foreach (Line line in _model.LineList)
@@ -247,7 +264,7 @@ namespace Server
             }
             return lines;
         }
-        public List<Station> PrintStations()
+        public List<Station> GetStations()
         {
             List<Station> stations = new List<Station>();
             foreach (Station station in _model.StationList)

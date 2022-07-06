@@ -23,3 +23,14 @@ C:\Users\DEKELBE\source\repos\BusLine_Project\UiClient\obj\Debug\Views\DriverVie
 C:\Users\DEKELBE\source\repos\BusLine_Project\UiClient\obj\Debug\Views\LineView.baml
 C:\Users\DEKELBE\source\repos\BusLine_Project\UiClient\obj\Debug\Views\StationView.baml
 C:\Users\DEKELBE\source\repos\BusLine_Project\UiClient\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\DEKELBE\source\repos\BusLine_Project\UiClient\bin\Debug\Configuration\Driver.xml
+C:\Users\DEKELBE\source\repos\BusLine_Project\UiClient\bin\Debug\Configuration\Line.xml
+C:\Users\DEKELBE\source\repos\BusLine_Project\UiClient\bin\Debug\Configuration\Station.xml
+C:\Users\DEKELBE\source\repos\BusLine_Project\UiClient\bin\Debug\Configuration\TransportConfiguration.xml
+C:\Users\DEKELBE\source\repos\BusLine_Project\UiClient\bin\Debug\Model.dll
+C:\Users\DEKELBE\source\repos\BusLine_Project\UiClient\bin\Debug\Server.dll
+C:\Users\DEKELBE\source\repos\BusLine_Project\UiClient\bin\Debug\Model.pdb
+C:\Users\DEKELBE\source\repos\BusLine_Project\UiClient\bin\Debug\Model.dll.config
+C:\Users\DEKELBE\source\repos\BusLine_Project\UiClient\bin\Debug\Server.pdb
+C:\Users\DEKELBE\source\repos\BusLine_Project\UiClient\bin\Debug\Server.dll.config
+C:\Users\DEKELBE\source\repos\BusLine_Project\UiClient\obj\Debug\UiClient.csproj.CopyComplete

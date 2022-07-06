@@ -2,12 +2,23 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Xml.Serialization;
+using System.ComponentModel;
 
 namespace Model.Interfaces
 {
     [Serializable]
-    public class Station
+#pragma warning disable CS0659 // Type overrides Object.Equals(object o) but does not override Object.GetHashCode()
+    public class Station : INotifyPropertyChanged
+#pragma warning restore CS0659 // Type overrides Object.Equals(object o) but does not override Object.GetHashCode()
     {
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         #region Constructor
         public Station(string stationName, double latitude, double longitude)
         {
@@ -38,13 +49,37 @@ namespace Model.Interfaces
 
         #region Getters&Setters
         [XmlAttribute("name")]
-        public string Name { get => _name; set => _name = value; }
-        public double Latitude { get => _latitude; set => _latitude = value; }
-        public double Longitude { get => _longitude; set => _longitude = value; }
+        public string Name
+        {
+            get => _name;
+            set
+            {
+                _name = value;
+                OnPropertyChanged("Name");
+            }
+        }
+        public double Latitude
+        {
+            get => _latitude;
+            set
+            {
+                _latitude = value;
+                OnPropertyChanged("Latitude");
+            }
+        }
+        public double Longitude
+        {
+            get => _longitude;
+            set
+            {
+                _longitude = value;
+                OnPropertyChanged("Longitude");
+            }
+        }
         #endregion
 
         #region Operattors overload
-        public override String ToString() => "Station " + Name;
+        public override String ToString() => Name;
 
         public override bool Equals(object obj)
         {

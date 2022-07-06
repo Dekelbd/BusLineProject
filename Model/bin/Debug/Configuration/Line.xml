@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfLine xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Line name="abc">
-    <Station>
+    <Stations>
       <Station name="Haifa">
         <Latitude>1</Latitude>
         <Longitude>2</Longitude>
@@ -10,10 +10,10 @@
         <Latitude>3</Latitude>
         <Longitude>4</Longitude>
       </Station>
-    </Station>
+    </Stations>
   </Line>
   <Line name="def">
-    <Station>
+    <Stations>
       <Station name="Tel Aviv">
         <Latitude>3</Latitude>
         <Longitude>4</Longitude>
@@ -22,6 +22,6 @@
         <Latitude>5</Latitude>
         <Longitude>6</Longitude>
       </Station>
-    </Station>
+    </Stations>
   </Line>
 </ArrayOfLine>

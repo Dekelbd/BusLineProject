@@ -63,7 +63,7 @@ namespace ConsoleApp
                         }
                         Console.Write("Driver number: ");
                         int driver = int.Parse(Console.ReadLine());
-                        allLines = BusService.Instance.PrintLines();
+                        allLines = BusService.Instance.GetLines();
                         int j = 1;
                         foreach (Line printLine in allLines)
                         {
@@ -121,7 +121,7 @@ namespace ConsoleApp
                     case 4:
                         Console.Write("Line name: ");
                         string lineName = Console.ReadLine();
-                        allStation = BusService.Instance.PrintStations();
+                        allStation = BusService.Instance.GetStations();
                         int k = 1;
                         foreach (Station printStation in allStation)
                         {

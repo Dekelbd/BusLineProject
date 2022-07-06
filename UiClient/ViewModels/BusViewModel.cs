@@ -1,29 +1,46 @@
-﻿using Server;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Server;
 using Model.Interfaces;
-
+using System.Windows.Data;
+using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace UiClient.ViewModels
 {
-   
-    public class BusViewModel
+    public class BusViewModel : ViewModelBase
     {
+        private ObservableCollection<Bus> _buses;
+        private List<Bus> CurrentBuses;
 
-        public void createBus()
+        public void GetBuses()
         {
-           // BusService.Instance.AddBus();
+            CurrentBuses = BusService.Instance.GetBuses();
+            ObservableCollection<Bus> obsCollection = new ObservableCollection<Bus>(CurrentBuses);
+            _buses = obsCollection;
+
         }
-        //IBusService busService = new BusService();
-        
 
+        public BusViewModel()
+        {
+            GetBuses();
+        }
+        public ObservableCollection<Bus> Buses
+        {
 
-
-
-
+            get
+            {
+                return _buses;
+            }
+            set
+            {
+                _buses = value;
+                OnPropertyChanged("Bus");
+            }
+        }
 
 
     }

@@ -23,12 +23,10 @@ namespace Server
         Station GetStationLocation(string stationName);
         List<Bus> GetBusByStation(string stationName);
         Bus GetBusInfo(int id);
-        #endregion
-
-        #region Print methods
-        List<Station> PrintStations();
+        List<Station> GetStations();
         List<Driver> GetDrivers();
-        List<Line> PrintLines();
+        List<Line> GetLines();
+        List<Bus> GetBuses();
         #endregion
 
         #region Xml methods

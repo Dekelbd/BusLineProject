@@ -4,19 +4,31 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UiClient.Views"
+             xmlns:interfaces="clr-namespace:Model.Interfaces;assembly=Model"
+             xmlns:converters="clr-namespace:UiClient.Converters"
+             xmlns:viewmodels="clr-namespace:UiClient.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:LineViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converters:LineInfoToStringMultiConverter x:Key="LineInfoToStringMultiConverter"/>
+        <DataTemplate x:Key="LineListBoxItemTemplate" DataType="{x:Type interfaces:Line}">
+            <StackPanel>
+                <TextBlock Margin="2" MinWidth="120" Grid.Row="1" Grid.Column="1" FontSize="15">
+                    <TextBlock.Text>
+                        <MultiBinding Converter="{StaticResource LineInfoToStringMultiConverter}">
+                            <Binding Path="LineName"/>
+                            <Binding Path="Stations"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
     <Grid Background="White">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="1000"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ListBox FontSize="20">
-            <ListBoxItem Content="Line 1"></ListBoxItem>
-            <ListBoxItem Content="Line 2"></ListBoxItem>
-            <ListBoxItem Content="Line 3"></ListBoxItem>
-        </ListBox>
-
+        <ListBox ItemsSource="{Binding Lines}" ItemTemplate="{StaticResource LineListBoxItemTemplate}"/>
     </Grid>
 </UserControl>

@@ -3,21 +3,34 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:UiClient.Views" xmlns:interfaces="clr-namespace:Model.Interfaces;assembly=Model"
+             xmlns:local="clr-namespace:UiClient.Views"
+             xmlns:interfaces="clr-namespace:Model.Interfaces;assembly=Model"
+             xmlns:converters="clr-namespace:UiClient.Converters"
+             xmlns:viewmodels="clr-namespace:UiClient.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:DriverViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converters:DriverInfoToStringMultiConverter x:Key="DriverInfoToStringMultiConverter"/>
+        <DataTemplate x:Key="DriverListBoxItemTemplate" DataType="{x:Type interfaces:Driver}">
+            <StackPanel>
+                <TextBlock Margin="2" MinWidth="120" Grid.Row="1" Grid.Column="1" FontSize="15">
+                    <TextBlock.Text>
+                        <MultiBinding Converter="{StaticResource DriverInfoToStringMultiConverter}">
+                            <Binding Path="FirstName"/>
+                            <Binding Path="LastName"/>
+                            <Binding Path="PhoneNumber"/>
+                            <Binding Path="Address"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
     <Grid Background="White">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1000"/>
+                <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ListBox FontSize="20" ItemsSource="{Binding Path=Current}">
-            <ListBox.ItemTemplate>
-                <DataTemplate DataType="{x:Type interfaces:Driver}">
-                    <TextBlock Text="{Binding FirstName }"></TextBlock>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <ListBox ItemsSource="{Binding Drivers}" ItemTemplate="{StaticResource DriverListBoxItemTemplate}"/>
     </Grid>
 </UserControl>
