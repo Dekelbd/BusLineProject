@@ -40,8 +40,7 @@ namespace UiClient.ViewModels
                 _buses = value;
                 OnPropertyChanged("Bus");
             }
-        }
 
-
+        }      
     }
 }
