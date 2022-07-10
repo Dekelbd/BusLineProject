@@ -72,8 +72,8 @@ namespace Server
             AddDriver("Dekel", "Ben", "David", "0525555555");
             AddDriver("Eyal", "Turz", "Yagur", "0523333333");
             AddDriver("Michael", "Shachur", "Eshar", "0527777777");
-            AddBus(123, "1,2", 1, 50, 1);
-            AddBus(456, "2,3", 2, 70, 2);
+            AddBus(123, "1,2", 1, 50, 1, "blue");
+            AddBus(456, "2,3", 2, 70, 2, "red");
             return new BusModel();
         }
         private List<Bus> IsStationInLine(string lineName)
@@ -115,7 +115,7 @@ namespace Server
         #endregion
 
         #region Public methods
-        public int AddBus(int id, String linesNumbers, int driverNum, int occupancy, int type)
+        public int AddBus(int id, String linesNumbers, int driverNum, int occupancy, int type, string color)
         {
             if ((driverNum < 0) || (driverNum > _model.DriverList.Count))
             {              
@@ -140,7 +140,7 @@ namespace Server
                     lines.Add(_model.LineList[num]);
                 }
             }
-            Bus bus = new Bus(id, lines, driver, occupancy, (type == 1) ? BusType.trips : BusType.communal);
+            Bus bus = new Bus(id, lines, driver, occupancy, (type == 1) ? BusType.trips : BusType.communal, color);
             if (bus == null)
             {
                 return 3;

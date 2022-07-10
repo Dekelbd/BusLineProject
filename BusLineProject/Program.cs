@@ -24,7 +24,7 @@ namespace ConsoleApp
             BusService.Instance.ReadFromXml();
 
             Console.WriteLine("Hello and welcome to the bus management system!\n");
-
+            /*
             #region Switch case
             int menuchoice = 0;
             while (menuchoice != 9)
@@ -72,7 +72,7 @@ namespace ConsoleApp
                         }
                         Console.Write("Enter lines list: ");
                         string linesList = Console.ReadLine();
-                        int option = BusService.Instance.AddBus(id, linesList, driver, occupancy, type);
+                        int option = BusService.Instance.AddBus(id, linesList, driver, occupancy, type, color);
                         if (option == 1)
                         {
                             Console.WriteLine("Driver not found");
@@ -236,9 +236,9 @@ namespace ConsoleApp
                         break;
                         #endregion
                 }
-            }
-            #endregion
+            }*/
+            //#endregion
         }
     }
 }
-#endregion
+//#endregion

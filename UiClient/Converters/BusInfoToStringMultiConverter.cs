@@ -18,10 +18,11 @@ namespace UiClient.Converters
             string driverLastName = (string)values[2];
             string busType = values[3].ToString();
             string busOccupancy = values[4].ToString();
-            List<Line> Lines = (List<Line>)values[5];
+            string busColor = values[5].ToString();
+            List<Line> Lines = (List<Line>)values[6];
 
             return $"Bus id : {busId}{Environment.NewLine}Driver name : {driverFirstName} {driverLastName}{Environment.NewLine}Bus type : {busType}{Environment.NewLine}" +
-                $"Bus occupancy : {busOccupancy}{Environment.NewLine}Lines : {string.Join(", ", Lines)}";
+                $"Bus occupancy : {busOccupancy}{Environment.NewLine}Color : {busColor}{Environment.NewLine}Lines : {string.Join(", ", Lines)}";
 
         }
 

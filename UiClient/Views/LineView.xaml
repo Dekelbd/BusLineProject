@@ -37,6 +37,6 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <ListBox ItemsSource="{Binding Lines}" ItemTemplate="{StaticResource LineListBoxItemTemplate}"/>
+        <ListBox ItemsSource="{Binding Lines}" ItemTemplate="{StaticResource LineListBoxItemTemplate}" Grid.ColumnSpan="4" Height="273" Grid.RowSpan="4" Width="626" Margin="36,81,0,0"/>
     </Grid>
 </UserControl>

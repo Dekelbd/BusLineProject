@@ -4,6 +4,7 @@ using System.Text;
 using System.Xml.Serialization;
 using Model.Enums;
 using System.ComponentModel;
+using System.Windows.Media;
 
 namespace Model.Interfaces
 {
@@ -19,14 +20,15 @@ namespace Model.Interfaces
         }
 
         #region Constructor
-        public Bus(int id, List<Line> lines, Driver driver, int occupancy, BusType type)
+        public Bus(int id, List<Line> lines, Driver driver, int occupancy, BusType type, string color)
         {
             Lines = lines;
             _id = id;
             _driver = driver;
             _occupancy = occupancy;
             _type = type;   
-
+            _color = color;
+            new SolidColorBrush((Color)ColorConverter.ConvertFromString(_color));
         }
         private Bus()
         {
@@ -83,6 +85,16 @@ namespace Model.Interfaces
                 OnPropertyChanged("Type");
             }
         }
+
+        public string Color
+        {
+            get => _color;
+            set
+            {
+                _color = value;
+                OnPropertyChanged("Color");
+            }
+        }
         #endregion
 
         #region Fields
@@ -91,6 +103,7 @@ namespace Model.Interfaces
         private Driver _driver;
         private int _occupancy;
         private BusType _type;
+        private string _color;
         #endregion
 
     }

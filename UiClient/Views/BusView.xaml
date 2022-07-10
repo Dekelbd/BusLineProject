@@ -13,6 +13,7 @@
         <converters:BusInfoToStringMultiConverter x:Key="BusInfoToStringMultiConverter"/>
         <DataTemplate x:Key="BusListBoxItemTemplate" DataType="{x:Type interfaces:Bus}">
             <StackPanel>
+                <Border BorderBrush="{Binding Color, Converter={StaticResource BusInfoToStringMultiConverter}}">
                 <TextBlock Margin="2" MinWidth="120" Grid.Row="1" Grid.Column="1" FontSize="15">
                     <TextBlock.Text>
                         <MultiBinding Converter="{StaticResource BusInfoToStringMultiConverter}">
@@ -21,16 +22,18 @@
                             <Binding Path="Driver.LastName"/>
                             <Binding Path="Type"/>
                             <Binding Path="Occupancy"/>
+                            <Binding Path="Color"/>
                             <Binding Path="Lines"/>
                         </MultiBinding>
                     </TextBlock.Text>
                 </TextBlock>
+                </Border>
             </StackPanel>
         </DataTemplate>
     </UserControl.Resources>
     <Grid Background="White">
         <TextBox  x:Name="FilterTextbox" TextChanged="FilterTextbox_TextChanged" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="108,40,0,0" Width="101" Height="25" FontSize="17" Background="#FFF8FFFF"/>
-        <ListView x:Name="MyList" HorizontalAlignment="Left" VerticalAlignment="Top" ItemsSource="{Binding Buses}" ItemTemplate="{StaticResource BusListBoxItemTemplate}" Grid.ColumnSpan="4" Height="273" Grid.RowSpan="4" Width="626" Margin="36,81,0,0"/>
+        <ListView x:Name="BusList" HorizontalAlignment="Left" VerticalAlignment="Top" ItemsSource="{Binding Buses}" ItemTemplate="{StaticResource BusListBoxItemTemplate}" Grid.ColumnSpan="4" Height="273" Grid.RowSpan="4" Width="626" Margin="36,81,0,0"/>
         <TextBlock FontSize="18" Margin="36,40,678,310"><Run Text="Bus ID :"/></TextBlock>
     </Grid>
 </UserControl>

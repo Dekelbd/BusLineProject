@@ -24,14 +24,13 @@ namespace UiClient.Views
         {
             InitializeComponent();
             DataContext = new BusViewModel();
-            MyList.Items.Filter = IdBusFilter;
+            BusList.Items.Filter = IdBusFilter;
 
         }
   
         private bool IdBusFilter(object obj)
         {
             var FilterObj = obj as Model.Interfaces.Bus;
-
             return FilterObj.Id.ToString().Contains(FilterTextbox.Text);
 
         }
@@ -40,11 +39,11 @@ namespace UiClient.Views
         {
             if(FilterTextbox.Text == null)
             {
-                MyList.Items.Filter = null;
+                BusList.Items.Filter = null;
             }
             else
             {
-                MyList.Items.Filter = IdFilter();
+                BusList.Items.Filter = IdFilter();
             }
 
         }
@@ -53,5 +52,6 @@ namespace UiClient.Views
         {
             return IdBusFilter;
         }
+
     }
 }

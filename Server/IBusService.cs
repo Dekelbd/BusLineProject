@@ -12,7 +12,7 @@ namespace Server
     public interface IBusService
     {
         #region Add methods
-        int AddBus(int id, String linesNumbers, int driverNum, int occupancy, int type);
+        int AddBus(int id, String linesNumbers, int driverNum, int occupancy, int type, string color);
         bool AddStation(string name, double latitude, double longitude);
         bool AddLine(string lineName, String stationsNumbers);
         bool AddDriver(string firstName, string lastName, string address, string phoneNumber);

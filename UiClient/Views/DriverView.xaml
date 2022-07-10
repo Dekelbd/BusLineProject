@@ -39,6 +39,6 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <ListBox ItemsSource="{Binding Drivers}" ItemTemplate="{StaticResource DriverListBoxItemTemplate}"/>
+        <ListBox ItemsSource="{Binding Drivers}" ItemTemplate="{StaticResource DriverListBoxItemTemplate}" Grid.ColumnSpan="4" Height="273" Grid.RowSpan="4" Width="626" Margin="36,81,0,0"/>
     </Grid>
 </UserControl>

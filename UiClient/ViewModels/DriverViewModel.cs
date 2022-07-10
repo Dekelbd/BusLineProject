@@ -21,8 +21,6 @@ namespace UiClient.ViewModels
             CurrentDrivers = BusService.Instance.GetDrivers();
             ObservableCollection<Driver> obsCollection = new ObservableCollection<Driver>(CurrentDrivers);
             _drivers = obsCollection;
-            //CollectionViewSource v = new CollectionViewSource();
-            //v.View.Refresh();
 
         }
 
