@@ -5,20 +5,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using System.Windows.Media;
 using Model.Interfaces;
 
 namespace UiClient.Converters
 {
-    public class BusBorderColor : IMultiValueConverter
+    public class BusBorderColorConverter : IValueConverter
     {
-        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-
-            return "Sdf";
-
+            return new SolidColorBrush((Color)ColorConverter.ConvertFromString(value.ToString()));
+            
         }
 
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

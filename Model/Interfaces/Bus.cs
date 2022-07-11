@@ -28,7 +28,7 @@ namespace Model.Interfaces
             _occupancy = occupancy;
             _type = type;   
             _color = color;
-            new SolidColorBrush((Color)ColorConverter.ConvertFromString(_color));
+            //new SolidColorBrush((Color)ColorConverter.ConvertFromString(_color));
         }
         private Bus()
         {

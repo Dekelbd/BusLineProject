@@ -6,14 +6,17 @@
              xmlns:local="clr-namespace:UiClient.Views"
              xmlns:interfaces="clr-namespace:Model.Interfaces;assembly=Model"
              xmlns:converters="clr-namespace:UiClient.Converters"
+             xmlns:DataTemplate="clr-namespace:UiClient.DataTemplates"
              xmlns:viewmodels="clr-namespace:UiClient.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:BusViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <converters:BusInfoToStringMultiConverter x:Key="BusInfoToStringMultiConverter"/>
+        <converters:BusBorderColorConverter x:Key="BusBorderColorConverter"/>
+        
         <DataTemplate x:Key="BusListBoxItemTemplate" DataType="{x:Type interfaces:Bus}">
             <StackPanel>
-                <Border BorderBrush="{Binding Color, Converter={StaticResource BusInfoToStringMultiConverter}}">
+                <Border BorderThickness="1" BorderBrush="{Binding Color,Converter={StaticResource BusBorderColorConverter}}">
                 <TextBlock Margin="2" MinWidth="120" Grid.Row="1" Grid.Column="1" FontSize="15">
                     <TextBlock.Text>
                         <MultiBinding Converter="{StaticResource BusInfoToStringMultiConverter}">
@@ -30,10 +33,48 @@
                 </Border>
             </StackPanel>
         </DataTemplate>
+        <DataTemplate x:Key="BusListBoxItemTemplateTwo" DataType="{x:Type interfaces:Bus}">
+            <StackPanel>
+                <Border BorderThickness="5" BorderBrush="Black">
+                    <TextBlock Margin="2" MinWidth="120" Grid.Row="1" Grid.Column="1" FontSize="15">
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource BusInfoToStringMultiConverter}">
+                                <Binding Path="Id"/>
+                                <Binding Path="Driver.FirstName"/>
+                                <Binding Path="Driver.LastName"/>
+                                <Binding Path="Type"/>
+                                <Binding Path="Occupancy"/>
+                                <Binding Path="Color"/>
+                                <Binding Path="Lines"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </Border>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate:BusTemplateSelector 
+            BusListBoxItemTemplate="{StaticResource BusListBoxItemTemplate}" 
+            BusListBoxItemTemplateTwo="{StaticResource BusListBoxItemTemplateTwo}" 
+            x:Key="BusTemplateSelector"/>
     </UserControl.Resources>
     <Grid Background="White">
-        <TextBox  x:Name="FilterTextbox" TextChanged="FilterTextbox_TextChanged" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="108,40,0,0" Width="101" Height="25" FontSize="17" Background="#FFF8FFFF"/>
-        <ListView x:Name="BusList" HorizontalAlignment="Left" VerticalAlignment="Top" ItemsSource="{Binding Buses}" ItemTemplate="{StaticResource BusListBoxItemTemplate}" Grid.ColumnSpan="4" Height="273" Grid.RowSpan="4" Width="626" Margin="36,81,0,0"/>
-        <TextBlock FontSize="18" Margin="36,40,678,310"><Run Text="Bus ID :"/></TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+            <TextBlock  Margin="0,20,0,3" FontSize="18" Text="Bus ID:"/>
+            <TextBox x:Name="FilterTextbox" TextChanged="FilterTextbox_TextChanged"
+                  Width="101" Height="25" Margin="5,20,0,3" FontSize="17" Background="#FFF8FFFF"/>
+        </StackPanel>
+        
+        <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="BusList" HorizontalAlignment="Left" VerticalAlignment="Top" 
+                  ItemsSource="{Binding Buses}" ItemTemplateSelector="{Binding Source={StaticResource BusTemplateSelector}}"
+                  Height="350" Width="500" />
+
+        <!--<ListView x:Name="BusList" HorizontalAlignment="Left" VerticalAlignment="Top" ItemsSource="{Binding Buses}" ItemTemplate="{StaticResource BusListBoxItemTemplate}" Grid.ColumnSpan="4" Height="273" Grid.RowSpan="4" Width="626" Margin="36,81,0,0"/>-->
+        <!--<Button Command="{Binding AddCommand}"/>-->
+
     </Grid>
 </UserControl>

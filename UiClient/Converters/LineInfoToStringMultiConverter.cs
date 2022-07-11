@@ -13,10 +13,15 @@ namespace UiClient.Converters
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            string LineName = (string)values[0];
-            List<Station> stations = (List<Station>)values[1];
-       
-            return $"Line Name : {LineName}{Environment.NewLine}Stations : {string.Join(", ", stations)}";
+            if (values.Length == 2)
+            {
+                string LineName = values[0].ToString();
+                List<Station> stations = (List<Station>)values[1];
+
+                return $"Line Name : {LineName}{Environment.NewLine}" +
+                    $"Stations : {string.Join(", ", stations)}";
+            }
+            return null;
 
         }
 

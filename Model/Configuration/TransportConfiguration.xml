@@ -25,6 +25,56 @@
     <Type>trips</Type>
 	<Color>blue</Color>
   </Bus>
+	<Bus BusId="555">
+		<line>
+			<Line name="Akko Haifa">
+				<Station>
+					<Station name="Hadera">
+						<Latitude>5</Latitude>
+						<Longitude>77</Longitude>
+					</Station>
+					<Station name="Jerusalem">
+						<Latitude>1</Latitude>
+						<Longitude>79</Longitude>
+					</Station>
+				</Station>
+			</Line>
+		</line>
+		<Driver>
+			<FirstName>Or</FirstName>
+			<LastName>Dixi</LastName>
+			<Address>Achziv</Address>
+			<PhoneNumber>0547848155</PhoneNumber>
+		</Driver>
+		<Occupancy>40</Occupancy>
+		<Type>trips</Type>
+		<Color>red</Color>
+	</Bus>
+	<Bus BusId="189">
+		<line>
+			<Line name="xyxyxy">
+				<Station>
+					<Station name="Eilat">
+						<Latitude>34</Latitude>
+						<Longitude>67</Longitude>
+					</Station>
+					<Station name="Metulla">
+						<Latitude>9</Latitude>
+						<Longitude>3</Longitude>
+					</Station>
+				</Station>
+			</Line>
+		</line>
+		<Driver>
+			<FirstName>Idan</FirstName>
+			<LastName>Gerty</LastName>
+			<Address>Rafael</Address>
+			<PhoneNumber>0541234869</PhoneNumber>
+		</Driver>
+		<Occupancy>35</Occupancy>
+		<Type>trips</Type>
+		<Color>yellow</Color>
+	</Bus>
   <Bus BusId="456">
     <line>
       <Line name="abc">

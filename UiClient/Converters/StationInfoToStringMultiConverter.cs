@@ -12,11 +12,16 @@ namespace UiClient.Converters
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            string Name = (string)values[0];
-            string Latitude = values[1].ToString();
-            string Longitude = values[2].ToString();
+            if (values.Length == 3)
+            {
+                string Name = values[0].ToString();
+                string Latitude = values[1].ToString();
+                string Longitude = values[2].ToString();
 
-            return $"Station name : {Name}{Environment.NewLine}Latitude : {Latitude}{Environment.NewLine}Longitude : {Longitude}";
+                return $"Station name : {Name}{Environment.NewLine}Latitude : {Latitude}" +
+                        $"{Environment.NewLine}Longitude : {Longitude}";
+            }
+            return null;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

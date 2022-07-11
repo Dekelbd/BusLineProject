@@ -12,12 +12,18 @@ namespace UiClient.Converters
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            string FirstName = (string)values[0];
-            string LastName = (string)values[1];
-            string PhoneNumber = (string)values[2];
-            string Address = (string)values[3];
+            if (values.Length == 4)
+            {
+                string FirstName = values[0].ToString();
+                string LastName = values[1].ToString();
+                string PhoneNumber = values[2].ToString();
+                string Address = values[3].ToString();
 
-            return $"Driver name : {FirstName} {LastName}{Environment.NewLine}Phone number : {PhoneNumber}{Environment.NewLine}Address : {Address}";
+                return $"Driver name : {FirstName} {LastName}{Environment.NewLine}" +
+                        $"Phone number : {PhoneNumber}{Environment.NewLine}Address : {Address}";
+            }
+            return null;
+
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

@@ -13,17 +13,20 @@ namespace UiClient.Converters
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            string busId = values[0].ToString();
-            string driverFirstName = (string)values[1];
-            string driverLastName = (string)values[2];
-            string busType = values[3].ToString();
-            string busOccupancy = values[4].ToString();
-            string busColor = values[5].ToString();
-            List<Line> Lines = (List<Line>)values[6];
+            if (values.Length == 7)
+            {
+                string busId = values[0].ToString();
+                string driverFirstName = values[1].ToString();
+                string driverLastName = values[2].ToString();
+                string busType = values[3].ToString();
+                string busOccupancy = values[4].ToString();
+                string busColor = values[5].ToString();
+                List<Line> Lines = (List<Line>)values[6];
 
-            return $"Bus id : {busId}{Environment.NewLine}Driver name : {driverFirstName} {driverLastName}{Environment.NewLine}Bus type : {busType}{Environment.NewLine}" +
-                $"Bus occupancy : {busOccupancy}{Environment.NewLine}Color : {busColor}{Environment.NewLine}Lines : {string.Join(", ", Lines)}";
-
+                return $"Bus id : {busId}{Environment.NewLine}Driver name : {driverFirstName} {driverLastName}{Environment.NewLine}Bus type : {busType}{Environment.NewLine}" +
+                    $"Bus occupancy : {busOccupancy}{Environment.NewLine}Color : {busColor}{Environment.NewLine}Lines : {string.Join(", ", Lines)}";
+            }
+            return null;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
