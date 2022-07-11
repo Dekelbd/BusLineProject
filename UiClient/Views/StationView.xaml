@@ -38,6 +38,24 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        <DataGrid x:Name="StationDataGrid" Height="400" Width="500" Margin="50,20,0,0">
+            <DataGrid.Resources>
+                <Style TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="LightBlue"/>
+                    <Setter Property="FontWeight" Value="SemiBold"/>
+                    <Setter Property="BorderThickness" Value="0,0,2,1"/>
+                    <Setter Property="BorderBrush" Value="Black"/>
+                </Style>
+            </DataGrid.Resources>
+            
+            <!-- Column Header Text & Bindings-->
+            <DataGrid.Columns>
+                <DataGridTextColumn Header=" Station Name"/>
+                <DataGridTextColumn Header=" Latitude"/>
+                <DataGridTextColumn Header=" Longitude"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
         <ListBox ItemsSource="{Binding Stations}" ItemTemplate="{StaticResource StationListBoxItemTemplate}" Grid.ColumnSpan="4" Height="273" Grid.RowSpan="4" Width="626" Margin="36,81,0,0"/>
     </Grid>
 </UserControl>
