@@ -71,7 +71,7 @@
         
         <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="BusList" HorizontalAlignment="Left" VerticalAlignment="Top" 
                   ItemsSource="{Binding Buses}" ItemTemplateSelector="{Binding Source={StaticResource BusTemplateSelector}}"
-                  Height="350" Width="500" />
+                  Height="355" Width="500" />
 
         <!--<ListView x:Name="BusList" HorizontalAlignment="Left" VerticalAlignment="Top" ItemsSource="{Binding Buses}" ItemTemplate="{StaticResource BusListBoxItemTemplate}" Grid.ColumnSpan="4" Height="273" Grid.RowSpan="4" Width="626" Margin="36,81,0,0"/>-->
         <!--<Button Command="{Binding AddCommand}"/>-->
