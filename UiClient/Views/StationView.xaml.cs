@@ -26,5 +26,6 @@ namespace UiClient.Views
             InitializeComponent();
             DataContext = new StationViewModel();
         }
+
     }
 }

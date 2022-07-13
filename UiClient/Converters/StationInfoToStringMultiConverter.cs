@@ -8,8 +8,10 @@ using System.Windows.Data;
 
 namespace UiClient.Converters
 {
+    
     public class StationInfoToStringMultiConverter : IMultiValueConverter
     {
+
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             if (values.Length == 3)
@@ -29,4 +31,5 @@ namespace UiClient.Converters
             throw new NotImplementedException();
         }
     }
+    
 }
