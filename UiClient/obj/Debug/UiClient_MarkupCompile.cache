@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\DEKELBE\source\repos\BusLine_Project\UiClient\App.xaml
-5-1788167745
+6-319203569
 
-202021377735
+21-295207741
 441447966800
-Views\BusView.xaml;MainWindow.xaml;Views\DriverView.xaml;Views\LineView.xaml;Views\StationView.xaml;
+OtherWindows\AddDriverWindow.xaml;Views\BusView.xaml;MainWindow.xaml;Views\DriverView.xaml;Views\LineView.xaml;Views\StationView.xaml;
 
 False
 

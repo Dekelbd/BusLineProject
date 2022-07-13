@@ -6,33 +6,22 @@
              xmlns:local="clr-namespace:UiClient.Views"
              xmlns:interfaces="clr-namespace:Model.Interfaces;assembly=Model"
              xmlns:converters="clr-namespace:UiClient.Converters"
-             xmlns:viewmodels="clr-namespace:UiClient.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:StationViewModel}"
+             xmlns:viewmodels="clr-namespace:UiClient.ViewModels" xmlns:Controls="http://schemas.microsoft.com/netfx/2009/xaml/presentation" d:DataContext="{d:DesignInstance Type=viewmodels:StationViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-       
+        <Controls:DataGrid x:Key="StationDataGrid" ItemsSource="{Binding Stations}">
+            <Controls:DataGrid.Columns>
+                <Controls:DataGridTextColumn Header="Station Name" Binding="{Binding Path=Name}" IsReadOnly="True"/>
+                <Controls:DataGridTextColumn Header="Latitude" Binding="{Binding Path=Latitude}" IsReadOnly="True"/>
+                <Controls:DataGridTextColumn Header="Longitude" Binding="{Binding Path=Longitude}" IsReadOnly="True"/>
+            </Controls:DataGrid.Columns>
+        </Controls:DataGrid>
     </UserControl.Resources>
     <Grid Background="White">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <DataGrid x:Name="StationDataGrid" ItemsSource="{Binding Stations}" Height="300" Width="400" Margin="50,20,0,0">
-                        
-            <!-- Column Header Text & Bindings-->
-            <DataGrid.Columns>
-                <DataGridTextColumn Header=" Station Name" Binding="{Binding Name}" Width="130"/>
-                <DataGridTextColumn Header=" Latitude" Binding="{Binding Latitude}" Width="130"/>
-                <DataGridTextColumn Header=" Longitude" Binding="{Binding Longitude}" Width="*"/>
-            </DataGrid.Columns>
+
+
+        <DataGrid ItemsSource="{Binding Stations}" AutoGenerateColumns="False" >
             <DataGrid.Resources>
                 <Style TargetType="{x:Type DataGridColumnHeader}">
                     <Setter Property="Background" Value="LightBlue"/>
@@ -41,8 +30,14 @@
                     <Setter Property="BorderBrush" Value="Black"/>
                 </Style>
             </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header=" Station Name"
+                      Binding="{Binding Name}" Width="*" />
+                <DataGridTextColumn Header=" Longitude"
+                      Binding="{Binding Longitude}" Width="*" />
+                <DataGridTextColumn Header=" Latitude"
+                      Binding="{Binding Latitude}" Width="*" />
+            </DataGrid.Columns>
         </DataGrid>
-        <!--<ListBox ItemsSource="{Binding Stations}" ItemTemplate="{StaticResource StationListBoxItemTemplate}"
-        Grid.ColumnSpan="4" Height="273" Grid.RowSpan="4" Width="626" Margin="36,81,0,0"/>-->
     </Grid>
 </UserControl>

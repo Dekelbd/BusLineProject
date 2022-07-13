@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UiClient.ViewModels;
+using UiClient.OtherWindows;
+
 
 namespace UiClient.Views
 {
@@ -26,6 +28,12 @@ namespace UiClient.Views
             InitializeComponent();
             DataContext = new DriverViewModel();
 
+        }
+
+        private void AddDriverButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddDriverWindow AddDriverWin = new AddDriverWindow();
+            AddDriverWin.Show();
         }
     }
 }

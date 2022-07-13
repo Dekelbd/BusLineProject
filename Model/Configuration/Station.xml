@@ -12,4 +12,12 @@
     <Latitude>5</Latitude>
     <Longitude>6</Longitude>
   </Station>
+	<Station name="Gilon">
+		<Latitude>12</Latitude>
+		<Longitude>5.5</Longitude>
+	</Station>
+	<Station name="Misgav">
+		<Latitude>11.3</Latitude>
+		<Longitude>19</Longitude>
+	</Station>
 </ArrayOfStation>

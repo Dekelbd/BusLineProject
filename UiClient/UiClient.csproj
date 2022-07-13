@@ -121,6 +121,9 @@
     <Compile Include="Converters\LineInfoToStringMultiConverter.cs" />
     <Compile Include="Converters\StationInfoToStringMultiConverter.cs" />
     <Compile Include="DataTemplates\BusTemplateSelector.cs" />
+    <Compile Include="OtherWindows\AddDriverWindow.xaml.cs">
+      <DependentUpon>AddDriverWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\BusViewModel.cs" />
     <Compile Include="ViewModels\DriverViewModel.cs" />
     <Compile Include="ViewModels\LineViewModel.cs" />
@@ -135,6 +138,10 @@
     <Compile Include="Views\StationView.xaml.cs">
       <DependentUpon>StationView.xaml</DependentUpon>
     </Compile>
+    <Page Include="OtherWindows\AddDriverWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\BusView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -210,6 +217,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Views\Icons\add.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>
