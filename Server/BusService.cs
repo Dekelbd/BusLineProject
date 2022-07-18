@@ -40,6 +40,9 @@ namespace Server
 
         #region Fileds
         BusModel _model = new BusModel();
+
+        public event EventHandler<EventArgs> BusUpdated;
+
         #endregion
 
         #region Constructor
@@ -145,7 +148,8 @@ namespace Server
             {
                 return 3;
             }
-            _model.BusesList.Add(bus);          
+            _model.BusesList.Add(bus);
+            BusUpdated.Invoke(this, new EventArgs());
             return 4;
         }
         public bool AddDriver(string firstName, string lastName, string address, string phoneNumber)

@@ -69,5 +69,8 @@ C:\Users\DEKELBE\source\repos\BusLine_Project\UiClient\bin\Debug\System.Security
 C:\Users\DEKELBE\source\repos\BusLine_Project\UiClient\bin\Debug\System.Security.Permissions.xml
 C:\Users\DEKELBE\source\repos\BusLine_Project\UiClient\bin\Debug\System.Security.Principal.Windows.xml
 C:\Users\DEKELBE\source\repos\BusLine_Project\UiClient\bin\Debug\System.Threading.Tasks.Dataflow.xml
-C:\Users\DEKELBE\source\repos\BusLine_Project\UiClient\obj\Debug\OtherWindows\AddDriverWindow.g.cs
-C:\Users\DEKELBE\source\repos\BusLine_Project\UiClient\obj\Debug\OtherWindows\AddDriverWindow.baml
+C:\Users\DEKELBE\source\repos\BusLine_Project\UiClient\obj\Debug\Views\AddDriverWindow.g.cs
+C:\Users\DEKELBE\source\repos\BusLine_Project\UiClient\obj\Debug\Views\AddDriverWindow.baml
+C:\Users\DEKELBE\source\repos\BusLine_Project\UiClient\bin\Debug\Prism.dll
+C:\Users\DEKELBE\source\repos\BusLine_Project\UiClient\bin\Debug\Prism.pdb
+C:\Users\DEKELBE\source\repos\BusLine_Project\UiClient\bin\Debug\Prism.xml

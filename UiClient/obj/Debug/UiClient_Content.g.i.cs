@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("views/icons/add.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("views/icons/exit-full-screen.png")]
 
 

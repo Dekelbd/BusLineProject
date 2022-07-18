@@ -38,5 +38,9 @@ namespace Server
         //List<Bus> IsStationInLine(string lineName);
         #endregion
 
+        #region Events
+        event EventHandler<EventArgs> BusUpdated;
+
+        #endregion
     }
 }

@@ -41,10 +41,10 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Button Name="AddDriverButton" Grid.Column="4" Grid.Row="0" Width="50" Height="50" Click="AddDriverButton_Click">
+        <Button Name="AddDriverButton" Command="{Binding AddNewDriverCommand}" Grid.Column="4" Grid.Row="0" Width="50" Height="50"
+                Background="White" BorderThickness="0">
             <StackPanel>
                 <Image Source="Icons/add.png"/>
-                <TextBlock>Blablabla</TextBlock>
             </StackPanel>
         </Button>
         <ListBox ItemsSource="{Binding Drivers}" ItemTemplate="{StaticResource DriverListBoxItemTemplate}"
