@@ -223,9 +223,6 @@
   <ItemGroup>
     <Resource Include="Views\Icons\add.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Views\Icons\exit.png" />
-  </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

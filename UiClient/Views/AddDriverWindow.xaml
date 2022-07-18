@@ -5,8 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UiClient.Views"
         mc:Ignorable="d"
-        Title="AddDriverWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="AddDriverWindow" Height="500" Width="800">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="140"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="155"/>
+            <ColumnDefinition Width="155"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock x:Name="CreateNewDriver" Grid.Column="3" Grid.Row="0" FontWeight="Bold" HorizontalAlignment="Center" FontSize="25" Text="Create New Driver"/>
+        <TextBlock  Text="First Name :" Grid.Column="0" Grid.Row="2" FontSize="17" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+        <TextBox x:Name="DriverFirstName" Grid.Column="1" Grid.Row="2" Width="90" Height="20" Margin="0,0,0,28" Background="#FFF8FFFF"/>
+        <TextBlock  Text="Last Name :" Grid.Column="0" Grid.Row="3" FontSize="17" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+        <TextBox x:Name="DriverLastName" Grid.Column="1" Grid.Row="3" Width="90" Height="20" Margin="0,0,0,28" Background="#FFF8FFFF"/>
+        <TextBlock  Text="Address :" Grid.Column="0" Grid.Row="4" FontSize="17" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+        <TextBox x:Name="DriverAddress" Grid.Column="1" Grid.Row="4" Width="90" Height="20" Margin="0,0,0,28" Background="#FFF8FFFF"/>
+        <TextBlock  Text="Phone Number :" Grid.Column="0" Grid.Row="5" FontSize="17" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+        <TextBox x:Name="DriverPhoneNumber" Grid.Column="1" Grid.Row="5" Width="90" Height="20" Margin="0,0,0,28" Background="#FFF8FFFF"/>
+        <Button Grid.Column="3" Grid.Row="7" Background="OldLace" FontWeight="Bold" FontSize="12" >Add driver</Button>
+
+
     </Grid>
 </Window>
