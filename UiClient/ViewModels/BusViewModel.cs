@@ -44,6 +44,11 @@ namespace UiClient.ViewModels
 
             });
             BusService.Instance.BusUpdated += Instance_BusUpdated;
+            //BusService.Instance.BusUpdated += (sender, e) =>
+            //{
+            //    _buses = new ObservableCollection<Bus>(BusService.Instance.GetBuses());
+            //    FilterBuses.Refresh();
+            //};
         }
 
         private void Instance_BusUpdated(object sender, EventArgs e)

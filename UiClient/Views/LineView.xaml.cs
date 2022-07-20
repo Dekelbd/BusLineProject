@@ -24,8 +24,7 @@ namespace UiClient.Views
         public LineView()
         {
             InitializeComponent();
-            DataContext = new LineViewModel();
-            //DataContext = new StationViewModel();
+            DataContext = new LineViewModel();          
         }
     }
 }

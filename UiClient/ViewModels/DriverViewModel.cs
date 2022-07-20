@@ -20,8 +20,9 @@ namespace UiClient.ViewModels
     {
         public ObservableCollection<Driver> _drivers;
         private List<Driver> CurrentDrivers;
-        AddDriverWindow AddDriverWin = new AddDriverWindow();
-        public DelegateCommand AddNewDriverCommand { get; set; }  
+       
+        public DelegateCommand AddNewDriverCommand { get; set; }
+        //public ICollectionView ChangeDriver { get; set; }
 
         public void GetDrivers()
         {
@@ -32,15 +33,26 @@ namespace UiClient.ViewModels
 
         public DriverViewModel()
         {
-            GetDrivers();
-            CollectionViewSource.GetDefaultView(Drivers).Refresh();
-            AddNewDriverCommand = new DelegateCommand(OnAddNewDriverCommandExecute);            
+            GetDrivers();          
+            AddNewDriverCommand = new DelegateCommand(OnAddNewDriverCommandExecute);
+            //ChangeDriver = CollectionViewSource.GetDefaultView(Drivers);
+            BusService.Instance.DriverUpdated += Instance_DriverUpdated;
         }
 
         private void OnAddNewDriverCommandExecute()
-        {            
-            AddDriverWin.Show();         
-        }  
+        {
+            AddDriverWindow addDriverWin = new AddDriverWindow();
+            addDriverWin.ShowDialog();   
+        }
+
+        private void Instance_DriverUpdated(object sender, EventArgs e)
+        {
+            //_drivers = new ObservableCollection<Driver>(BusService.Instance.GetDrivers());
+            //ChangeDriver = CollectionViewSource.GetDefaultView(_drivers);
+            //ChangeDriver.Refresh();
+            GetDrivers();
+            
+        }
 
         public ObservableCollection<Driver> Drivers
         {

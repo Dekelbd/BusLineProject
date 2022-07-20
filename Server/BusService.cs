@@ -42,6 +42,7 @@ namespace Server
         BusModel _model = new BusModel();
 
         public event EventHandler<EventArgs> BusUpdated;
+        public event EventHandler<EventArgs> DriverUpdated;
 
         #endregion
 
@@ -159,7 +160,8 @@ namespace Server
             {
                 return false;
             }
-            _model.DriverList.Add(driver);           
+            _model.DriverList.Add(driver);
+            DriverUpdated.Invoke(this, new EventArgs());
             return true;
         }
         public bool AddLine(string lineName, String stationsNumbers)

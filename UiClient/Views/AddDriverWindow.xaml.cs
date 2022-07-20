@@ -10,7 +10,9 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UiClient.ViewModels;
 
 namespace UiClient.Views
 {
@@ -22,6 +24,7 @@ namespace UiClient.Views
         public AddDriverWindow()
         {
             InitializeComponent();
+            DataContext = new AddNewDriverViewModel();
         }
     }
 }

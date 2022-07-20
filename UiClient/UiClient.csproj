@@ -124,7 +124,7 @@
     <Compile Include="Converters\LineInfoToStringMultiConverter.cs" />
     <Compile Include="Converters\StationInfoToStringMultiConverter.cs" />
     <Compile Include="DataTemplates\BusTemplateSelector.cs" />
-    <Compile Include="ViewModels\AddNewDriverModel.cs" />
+    <Compile Include="ViewModels\AddNewDriverViewModel.cs" />
     <Compile Include="ViewModels\BusViewModel.cs" />
     <Compile Include="ViewModels\DriverViewModel.cs" />
     <Compile Include="ViewModels\LineViewModel.cs" />

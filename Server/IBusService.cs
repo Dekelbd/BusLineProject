@@ -40,6 +40,7 @@ namespace Server
 
         #region Events
         event EventHandler<EventArgs> BusUpdated;
+        event EventHandler<EventArgs> DriverUpdated;
 
         #endregion
     }

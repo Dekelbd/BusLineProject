@@ -32,6 +32,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -41,6 +42,11 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Width="225" Height="55">
+            <TextBlock  Margin="0,15,0,3" FontSize="17" Text="Driver Name :" FontWeight="Bold"/>
+            <TextBox x:Name="FilterTextbox" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" 
+                  Width="101" Height="25" Margin="5,7,0,3" FontSize="17" Background="#FFF8FFFF"/>
+        </StackPanel>
         <Button Name="AddDriverButton" Command="{Binding AddNewDriverCommand}" Grid.Column="4" Grid.Row="0" Width="50" Height="50"
                 Background="White" BorderThickness="0">
             <StackPanel>
@@ -48,6 +54,6 @@
             </StackPanel>
         </Button>
         <ListBox ItemsSource="{Binding Drivers}" ItemTemplate="{StaticResource DriverListBoxItemTemplate}"
-        Grid.ColumnSpan="4" Height="273" Grid.RowSpan="4" Width="626" Margin="36,81,0,0"/>
+        Grid.ColumnSpan="4" Height="273" Grid.RowSpan="5" Width="626" Margin="36,81,0,0"/>
     </Grid>
 </UserControl>
