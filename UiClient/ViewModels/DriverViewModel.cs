@@ -20,9 +20,9 @@ namespace UiClient.ViewModels
     {
         public ObservableCollection<Driver> _drivers;
         private List<Driver> CurrentDrivers;
-       
+        private string _searchText;
+        public ICollectionView FilterDrivers { get; set; }
         public DelegateCommand AddNewDriverCommand { get; set; }
-        //public ICollectionView ChangeDriver { get; set; }
 
         public void GetDrivers()
         {
@@ -33,10 +33,23 @@ namespace UiClient.ViewModels
 
         public DriverViewModel()
         {
-            GetDrivers();          
+            GetDrivers();
+            FilterDrivers = CollectionViewSource.GetDefaultView(Drivers);
+            FilterDrivers.Filter = (item =>
+            {
+                if (item is Driver driver)
+                    if (string.IsNullOrEmpty(SearchText) || driver.FirstName.ToString().Contains(SearchText))
+                    {
+                        return true;
+                    }
+                return false;
+
+
+            });
             AddNewDriverCommand = new DelegateCommand(OnAddNewDriverCommandExecute);
-            //ChangeDriver = CollectionViewSource.GetDefaultView(Drivers);
             BusService.Instance.DriverUpdated += Instance_DriverUpdated;
+
+
         }
 
         private void OnAddNewDriverCommandExecute()
@@ -47,11 +60,9 @@ namespace UiClient.ViewModels
 
         private void Instance_DriverUpdated(object sender, EventArgs e)
         {
-            //_drivers = new ObservableCollection<Driver>(BusService.Instance.GetDrivers());
-            //ChangeDriver = CollectionViewSource.GetDefaultView(_drivers);
-            //ChangeDriver.Refresh();
-            GetDrivers();
-            
+            var drivers = BusService.Instance.GetDrivers();
+            Drivers.Clear();
+            drivers.ForEach(d => Drivers.Add(d));     
         }
 
         public ObservableCollection<Driver> Drivers
@@ -66,6 +77,22 @@ namespace UiClient.ViewModels
                 _drivers = value;
                 OnPropertyChanged("Drivers");
             }
+        }
+
+        public string SearchText
+        {
+
+            get
+            {
+                return _searchText;
+            }
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged("SearchText");
+                FilterDrivers.Refresh();
+            }
+
         }
 
 
